@@ -25,6 +25,10 @@ private slots:
     void on_btnnext_clicked();
     void on_btnprev_clicked();
 
+    void on_btnnext_2_clicked();
+
+    void on_btnprev_2_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
