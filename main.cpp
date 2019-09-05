@@ -1,11 +1,17 @@
-#include "mainwindow.h"
 #include <QApplication>
+#include "mainwindow.h"
+#include <QStyle>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    QApplication app(argc, argv);
+    app.setStyle("plastique");
+    app.setPalette( app.style()->standardPalette() );
+    MainWindow m;
+    m.setMinimumSize(600,600);
+    m.setMaximumSize(600,800);
+   // m.setCentralWidget();
 
-    return a.exec();
+    m.show();
+    return app.exec();
 }
