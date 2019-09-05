@@ -149,10 +149,47 @@ void MainWindow::on_btnprev_clicked()
 
 void MainWindow::on_btnnext_2_clicked()
 {
+    int last;  //Last variable takes the number from the last button
+    QString textl = ui->btn5->text();  //Getting the value
+    last = textl.toInt();   //Convertion to int
 
+    //QPushButton Array to store the buttons from the GUI in order to work later
+    QPushButton * options[5] = {ui->btn1, ui->btn2, ui->btn3, ui->btn4, ui->btn5};
+
+    //Initialize position in array
+    int pos = 0;
+
+    //Cycle to increase the page visit and set the name to the buttons
+    for (int i = last+1; i <= last+5; i++){
+        QString s = QString::number(i);
+        options[pos]->setText(s);
+
+//        qDebug() << i;
+        pos+=1;
+    }
 }
 
 void MainWindow::on_btnprev_2_clicked()
 {
+    int first; //First variable takes the number from the first button
+    QString textf = ui->btn1->text();  //Getting the value
+    first = textf.toInt();  //Convertion to int
 
+    //QPushButton Array to store the buttons from the GUI in order to work later
+    //Array must be backward
+    QPushButton * options[5] = {ui->btn5, ui->btn4, ui->btn3, ui->btn2, ui->btn1};
+
+    //Initialize position in array
+    int pos = 0;
+
+    //Cycle to increase the page visit and set the name to the buttons
+    for (int i = first-1; i >= first-5; i--){
+
+        //There are not negative pages
+            QString s = QString::number(i);
+            options[pos]->setText(s);
+
+//            qDebug() << i;
+            pos+=1;
+        }
 }
