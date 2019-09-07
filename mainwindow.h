@@ -26,6 +26,9 @@ private slots:
     void on_btnprev_clicked();
     void on_btnnext_2_clicked();
     void on_btnprev_2_clicked();
+    void wheelEvent(QWheelEvent *event);
+    int Page(int parameter);
+    void File(QString name);
 
 private:
     Ui::MainWindow *ui;

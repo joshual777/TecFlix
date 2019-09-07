@@ -2,7 +2,11 @@
 #include "ui_mainwindow.h"
 #include <QStyle>
 #include <QDesktopWidget>
-#include  <QtDebug>
+#include <QtDebug>
+#include <QWheelEvent>
+#include <QStringList>
+#include <qfile.h>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -193,3 +197,84 @@ void MainWindow::on_btnprev_2_clicked()
             pos+=1;
         }
 }
+
+void MainWindow::wheelEvent(QWheelEvent *event)
+{
+    int numDegrees = event->delta() / 8;
+    int numSteps = numDegrees / 15;
+    //qDebug() << numSteps;
+
+    if (event->orientation() == Qt::Vertical) {
+        numSteps++;
+        if (numSteps > 0){
+            Page(numSteps);
+        }
+        if (numSteps == 0){
+            Page(numSteps);
+        }
+    }
+    event->accept();
+}
+int MainWindow::Page(int parameter){
+    int conteo=0;
+    if (parameter > 0){
+        conteo++;
+        QString s = QString::number(conteo);
+        ui->pagel->setText(s);
+        qDebug()<<  conteo;
+    }
+    if (parameter == 0){
+        QString s = QString::number(conteo);
+        ui->pagel->setText(s);
+        qDebug()<< conteo;
+        conteo--;
+    }
+}
+
+void MainWindow::File(QString name){
+    QStringList wordList;
+
+        //File name
+        QFile f("movie_metadata.csv");
+
+        if (f.open(QIODevice::ReadOnly))
+        {
+            //file opened successfully
+            QString data;
+            data = f.readAll();  //Reading the file
+            qDebug () << data;
+            wordList = data.split(','); //Separating the file when find a ","
+
+            //Funtion to get the columns
+            const QStringList fields { data.split(',') };
+            const QString column { fields[38] };
+
+//            qDebug() <<wordList.length();
+//            qDebug() << wordList[11];
+//            qDebug() << "";
+//            qDebug() << column;
+
+            //Movie Ranking
+            int i = 11; //Initial position where are the movies titles
+            while(i<wordList.length()) //Goes through all de dataset getting the titles
+            {
+                qDebug() << wordList[i];
+                i = i + 27;
+            }
+
+            //Director info
+            i = 1; //Initial position where are the directors
+            while(i<wordList.length()) //Goes through all de dataset getting the titles
+            {
+                qDebug() << wordList[i];
+                i = i + 27;
+            }
+
+            //Close the file after parsing it
+            f.close();
+        }
+}
+
+
+
+
