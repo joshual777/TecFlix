@@ -27,11 +27,15 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    customview.cpp
+    customview.cpp \
+    node.cpp \
+    list.cpp
 
 HEADERS += \
         mainwindow.h \
-    customview.h
+    customview.h \
+    node.h \
+    list.h
 
 FORMS += \
         mainwindow.ui

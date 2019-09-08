@@ -1,11 +1,34 @@
-#ifndef NODO_H
-#define NODO_H
 
+#ifndef NODE_H
+#define NODE_H
 
-class nodo
+#include <iostream>
+
+using namespace std;
+
+template <class T>
+
+class Node
 {
 public:
-    nodo();
+    Node();
+    Node(T);
+    ~Node();
+
+    Node *next;
+    T data;
+    /**
+     * @title
+     * @autor
+     * @brief
+     */
+    void delete_all();
+    /**
+     * @title
+     * @autor
+     * @brief
+     */
+    void print();
 };
 
-#endif // NODO_H
+#endif //NODE_H
