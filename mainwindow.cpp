@@ -237,54 +237,53 @@ int MainWindow::Page(int parameter){
 
 
 void MainWindow::File(QString name){
-    QStringList wordList;
+    QStringList wordList, longer;
+    int colums, totalrows;
 
-    List <QString*> filas;
+    //Working with the list
+    List <QString> line;
+    List <List<QString>> lines;
 
         //File name
         QFile f("movie_metadata.csv");
 
         if (f.open(QIODevice::ReadOnly))
         {
+            //File opened successfully
 
-            //file opened successfully
-            QString data;
+            //Variables to manage the file
+            QString data;  //Read the whole csv file
+            QString size;  //Read just the first line in order to take the main information
+
+            size = f.readLine();    //Size read the first line
             data = f.readAll();  //Reading the file
-            QString * e;
-            qDebug () << data;
-            //filas.add_head(data.split(','));
-            wordList = data.split(','); //Separating the file when find a ","
-            filas.add_head(e);
 
+            longer = size.split(','); //Sparating the first row when finds a ','
+            wordList = data.split(','); //Separating the file when finds a ","
 
-            //Funtion to get the columns
-            const QStringList fields { data.split(',') };
-            const QString column { fields[38] };
+            colums = longer.length() - 1; //This variable gives me the amount of colums
+            totalrows = wordList.length() /colums +1; //This variable gives the amount of rows in the csv
 
+            //Monitorizing the varibales
+            qDebug() << colums;
+            qDebug() << totalrows;
+            qDebug() << wordList.length();
 
-//            qDebug() <<wordList.length();
-//            qDebug() << wordList[11];
-//            qDebug() << "";
-//            qDebug() << column;
-
-            //Movie Ranking
-            int i = 11; //Initial position where are the movies titles
-            while(i<wordList.length()) //Goes through all de dataset getting the titles
-            {
-                qDebug() << wordList[i];
-                i = i + 27;
+            //Adding each row into a ss list in order to manage their information
+            int separate = 1;
+            for (int i = 0; i <= wordList.length(); i++){
+                    line.add_end(wordList[i]);
+                    qDebug() << wordList[i];
+                    if (i == colums*separate){
+                        lines.add_end(line);
+                        qDebug() << "separate" ;
+                        qDebug() << separate;
+                        separate++;
+                    }
             }
+            qDebug() << "SECTION";
+           qDebug() << lines.size();
 
-            //Director info
-            i = 1; //Initial position where are the directors
-            while(i<wordList.length()) //Goes through all de dataset getting the titles
-            {
-                qDebug() << wordList[i];
-                i = i + 27;
-            }
-
-            //Close the file after parsing it
-            f.close();
         }
 }
 
