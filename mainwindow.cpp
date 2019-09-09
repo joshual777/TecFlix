@@ -1,15 +1,18 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 #include <QtDebug>
 #include <QWheelEvent>
 #include <QStringList>
 #include <qfile.h>
 #include <QTextStream>
+#include <QFileDialog>
 
-#include <list.h>
-#include <list.cpp>
+#include "list.h"
+#include "list.cpp"
+
+#include <page.h>
+#include <page.cpp>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,7 +20,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
+    ui->lineselect->setVisible(false);
+    ui->lineupload->setVisible(false);
+    ui->btnselect->setVisible(false);
+    ui->btnupload->setVisible(false);
 }
 
 //Variables to take pages
@@ -237,56 +243,84 @@ int MainWindow::Page(int parameter){
 
 
 void MainWindow::File(QString name){
-    QStringList wordList, longer;
-    int colums, totalrows;
 
-    //Working with the list
-    List <QString> line;
-    List <List<QString>> lines;
-
-        //File name
-        QFile f("movie_metadata.csv");
-
-        if (f.open(QIODevice::ReadOnly))
-        {
-            //File opened successfully
-
-            //Variables to manage the file
-            QString data;  //Read the whole csv file
-            QString size;  //Read just the first line in order to take the main information
-
-            size = f.readLine();    //Size read the first line
-            data = f.readAll();  //Reading the file
-
-            longer = size.split(','); //Sparating the first row when finds a ','
-            wordList = data.split(','); //Separating the file when finds a ","
-
-            colums = longer.length() - 1; //This variable gives me the amount of colums
-            totalrows = wordList.length() /colums +1; //This variable gives the amount of rows in the csv
-
-            //Monitorizing the varibales
-            qDebug() << colums;
-            qDebug() << totalrows;
-            qDebug() << wordList.length();
-
-            //Adding each row into a ss list in order to manage their information
-            int separate = 1;
-            for (int i = 0; i <= wordList.length(); i++){
-                    line.add_end(wordList[i]);
-                    qDebug() << wordList[i];
-                    if (i == colums*separate){
-                        lines.add_end(line);
-                        qDebug() << "separate" ;
-                        qDebug() << separate;
-                        separate++;
-                    }
-            }
-            qDebug() << "SECTION";
-           qDebug() << lines.size();
-
-        }
 }
 
 
+void MainWindow::on_btnselect_clicked()
+{
+    m_fileName = QFileDialog::getOpenFileName(this, "Get Any File");
+    ui->lineselect->setText(m_fileName);
+}
+
+void MainWindow::on_btnupload_clicked()
+{
+
+    QStringList wordList, longer;
+    int colums, totalrows, amount, division, counter;
+
+     m_file = new QFile(m_fileName);
+     if (m_file->open(QIODevice::ReadOnly))
+     {
+         //File opened successfully
+
+         //Variables to manage the file
+         QString data;  //Read the whole csv file
+         QString size;  //Read just the first line in order to take the main information
+
+         size = m_file->readLine();    //Size read the first line
+         data = m_file->readAll();  //Reading the file
+
+         longer = size.split(','); //Sparating the first row when finds a ','
+         wordList = data.split(','); //Separating the file when finds a ","
+
+         colums = longer.length() - 1; //This variable gives me the amount of colums
+         totalrows = wordList.length() /colums +1; //This variable gives the amount of rows in the csv
+         amount = wordList.length(); //Variable who has the amount of the whole csv
 
 
+         //Monitorizing the varibales
+         qDebug() << colums;
+         qDebug() << totalrows;
+         qDebug() << amount;
+
+         //The array can not manage the whole csv in bigger cases will happen the same
+         //due to this problem, the csb was divided in three pieces in order to manage the whole
+         //file in eficienttly
+
+         //Working on the array 1 from row 1 to row 1200
+         QString** map = new QString*[totalrows];
+         for (int i = 0; i <= totalrows; i++){
+             map[i] = new QString[colums];
+         }
+
+         division = 1200;
+         counter = 0;
+         for (int i = 1; i <= division; i++){
+             qDebug() << i;
+             for (int j = 1; j <= colums; j++){
+                 qDebug() << j;
+                 map[i][j] = wordList[counter];
+                 qDebug() <<  map[i][j];
+                 counter++;
+             }
+         }
+         qDebug() << "JOSHUA";
+         qDebug() << map[7][12];
+         qDebug() << map[33][12];
+         qDebug() << map[15][12];
+         qDebug() << map[333][12];
+
+
+         /////////////////////////////////////////////////////////////////////////////////////////////////////
+     }
+
+}
+
+void MainWindow::on_btnfile_clicked()
+{
+    ui->lineselect->setVisible(true);
+    ui->lineupload->setVisible(true);
+    ui->btnselect->setVisible(true);
+    ui->btnupload->setVisible(true);
+}

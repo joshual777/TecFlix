@@ -1,4 +1,3 @@
-
 #ifndef NODE_H
 #define NODE_H
 
@@ -17,17 +16,8 @@ public:
 
     Node *next;
     T data;
-    /**
-     * @title
-     * @autor
-     * @brief
-     */
+
     void delete_all();
-    /**
-     * @title
-     * @autor
-     * @brief
-     */
     void print();
 };
 

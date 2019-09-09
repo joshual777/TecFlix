@@ -44,6 +44,4 @@ private:
     int m_num_nodes;
 };
 
-
-
 #endif //LIST_H

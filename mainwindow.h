@@ -5,6 +5,9 @@
 #include <list.h>
 #include <node.h>
 
+#include <QString>
+#include <QFile>
+
 namespace Ui {
 class MainWindow;
 }
@@ -33,9 +36,16 @@ private slots:
     void wheelEvent(QWheelEvent *event);
     int Page(int parameter);
     void File(QString name);
+    void on_btnselect_clicked();
+    void on_btnupload_clicked();
+    void on_btnfile_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QString m_fileName;
+    // You must save the file on the heap
+    // If you create a file object on the stack, the program will crash.
+    QFile *m_file;
 };
 
 #endif // MAINWINDOW_H
