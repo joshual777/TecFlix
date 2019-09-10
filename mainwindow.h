@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <list.h>
+#include <page.h>
 #include <node.h>
 
 #include <QString>
@@ -20,6 +21,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+void setName(const QString &name);
 
 
 private slots:
@@ -35,7 +37,6 @@ private slots:
     void on_btnprev_2_clicked();
     void wheelEvent(QWheelEvent *event);
     int Page(int parameter);
-    void File(QString name);
     void on_btnselect_clicked();
     void on_btnupload_clicked();
     void on_btnfile_clicked();

@@ -242,104 +242,84 @@ int MainWindow::Page(int parameter){
     }
 }
 
-
-void MainWindow::File(QString name){
-
-}
-
-
 void MainWindow::on_btnselect_clicked()
 {
     m_fileName = QFileDialog::getOpenFileName(this, "Get Any File");
     ui->lineselect->setText(m_fileName);
+    chargefile(m_fileName);
 }
 
 void MainWindow::on_btnupload_clicked()
 {
 
-    QStringList wordList, longer;
-    int colums, totalrows, amount, division, counter;
+//    QStringList wordList, longer;
+//    int colums, totalrows, amount;
 
-     m_file = new QFile(m_fileName);
-     if (m_file->open(QIODevice::ReadOnly))
-     {
-         //File opened successfully
+//     m_file = new QFile(m_fileName);
+//     if (m_file->open(QIODevice::ReadOnly))
+//     {
+//         //File opened successfully
 
-         //Variables to manage the file
-         QString data;  //Read the whole csv file
-         QString size;  //Read just the first line in order to take the main information
+//         //Variables to manage the file
+//         QString data;  //Read the whole csv file
+//         QString size;  //Read just the first line in order to take the main information
 
-         size = m_file->readLine();    //Size read the first line
-         data = m_file->readAll();  //Reading the file
+//         size = m_file->readLine();    //Size read the first line
+//         data = m_file->readAll();  //Reading the file
 
-         longer = size.split(','); //Sparating the first row when finds a ','
-         wordList = data.split(','); //Separating the file when finds a ","
+//         longer = size.split(','); //Sparating the first row when finds a ','
+//         wordList = data.split(','); //Separating the file when finds a ","
 
-         colums = longer.length() - 1; //This variable gives me the amount of colums
-         totalrows = wordList.length() /colums +1; //This variable gives the amount of rows in the csv
-         amount = wordList.length(); //Variable who has the amount of the whole csv
+//         colums = longer.length() - 1; //This variable gives me the amount of colums
+//         totalrows = wordList.length() /colums +1; //This variable gives the amount of rows in the csv
+//         amount = wordList.length(); //Variable who has the amount of the whole csv
 
 
-         //Monitorizing the varibales
-         qDebug() << colums;
-         qDebug() << totalrows;
-         qDebug() << amount;
+//         //Monitorizing the varibales
+//         qDebug() << colums;
+//         qDebug() << totalrows;
+//         qDebug() << amount;
 
-         //The array can not manage the whole csv in bigger cases will happen the same
-         //due to this problem, the csb was divided in three pieces in order to manage the whole
-         //file in eficienttly
+//         //The array can  manage the whole csv in bigger cases will happen the same
+//         //but in order to work better it will be segment in fractions of 1200 movies to manage easily
+//         //file in eficienttly
 
-//         //Working on the array 1 from row 1 to row 1200
-//         QString** map = new QString*[totalrows];
-//         for (int i = 0; i <= totalrows; i++){
-//             map[i] = new QString[colums];
-//         }
 
-//         division = 9;
-//         counter = 0;
-//         for (int i = 1; i <= division; i++){
+//         /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//         // dynamically allocate memory of size M*N
+//         QString* A = new QString[totalrows * colums];
+
+//         int counter = 0;
+
+//         // assign values to allocated memory
+//         for (int i = 0; i < 1200; i++){
 //             qDebug() << i;
-//             for (int j = 1; j <= colums; j++){
+//             for (int j = 0; j < colums; j++){
 //                 qDebug() << j;
-//                 map[i][j] = wordList[counter];
-//                 qDebug() <<  map[i][j];
+//                 *(A + i*colums + j) = wordList[counter];
 //                 counter++;
-//             }
+//                 qDebug() << *(A + i*colums + j);
+//            }
 //         }
+
 //         qDebug() << "JOSHUA";
-//         qDebug() << map[7][12];
+//         qDebug() << (A + 0*colums)[11];
+//         qDebug() << (A + 2*colums)[11];
 
-////         for (int i = 0; i < totalrows; ++i) {
-////             free() map[i];
+////         // print the 2D array
+////         for (int i = 0; i < M; i++)
+////         {
+////             for (int j = 0; j < N; j++)
+////                 std::cout << *(A + i*N + j) << " ";	// or (A + i*N)[j])
+
+////             std::cout << std::endl;
 ////         }
-////         delete[] map;
-
-         /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-         // dynamically allocate memory of size M*N
-         QString* A = new QString[totalrows * colums];
-
-         int counter = 0;
-
-         // assign values to allocated memory
-         for (int i = 0; i < 1200; i++){
-             qDebug() << i;
-             for (int j = 0; j < colums; j++){
-                 qDebug() << j;
-                 *(A + i*colums + j) = wordList[counter];
-                 counter++;
-                 qDebug() << *(A + i*colums + j);
-            }
-         }
-
-         qDebug() << "JOSHUA";
-         qDebug() << (A + 0*colums)[11];
-         qDebug() << (A + 2*colums)[11];
 
 
-         // deallocate memory
-         delete[] A;
-     }
+//         // deallocate memory
+//         delete[] A;
+//     }
 
 }
 
