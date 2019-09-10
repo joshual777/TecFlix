@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <cstdlib>
 
 #include <QtDebug>
 #include <QWheelEvent>
@@ -288,31 +289,56 @@ void MainWindow::on_btnupload_clicked()
          //due to this problem, the csb was divided in three pieces in order to manage the whole
          //file in eficienttly
 
-         //Working on the array 1 from row 1 to row 1200
-         QString** map = new QString*[totalrows];
-         for (int i = 0; i <= totalrows; i++){
-             map[i] = new QString[colums];
-         }
+//         //Working on the array 1 from row 1 to row 1200
+//         QString** map = new QString*[totalrows];
+//         for (int i = 0; i <= totalrows; i++){
+//             map[i] = new QString[colums];
+//         }
 
-         division = 1200;
-         counter = 0;
-         for (int i = 1; i <= division; i++){
-             qDebug() << i;
-             for (int j = 1; j <= colums; j++){
-                 qDebug() << j;
-                 map[i][j] = wordList[counter];
-                 qDebug() <<  map[i][j];
-                 counter++;
-             }
-         }
-         qDebug() << "JOSHUA";
-         qDebug() << map[7][12];
-         qDebug() << map[33][12];
-         qDebug() << map[15][12];
-         qDebug() << map[333][12];
+//         division = 9;
+//         counter = 0;
+//         for (int i = 1; i <= division; i++){
+//             qDebug() << i;
+//             for (int j = 1; j <= colums; j++){
+//                 qDebug() << j;
+//                 map[i][j] = wordList[counter];
+//                 qDebug() <<  map[i][j];
+//                 counter++;
+//             }
+//         }
+//         qDebug() << "JOSHUA";
+//         qDebug() << map[7][12];
 
+////         for (int i = 0; i < totalrows; ++i) {
+////             free() map[i];
+////         }
+////         delete[] map;
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         // dynamically allocate memory of size M*N
+         QString* A = new QString[totalrows * colums];
+
+         int counter = 0;
+
+         // assign values to allocated memory
+         for (int i = 0; i < 1200; i++){
+             qDebug() << i;
+             for (int j = 0; j < colums; j++){
+                 qDebug() << j;
+                 *(A + i*colums + j) = wordList[counter];
+                 counter++;
+                 qDebug() << *(A + i*colums + j);
+            }
+         }
+
+         qDebug() << "JOSHUA";
+         qDebug() << (A + 0*colums)[11];
+         qDebug() << (A + 2*colums)[11];
+
+
+         // deallocate memory
+         delete[] A;
      }
 
 }
