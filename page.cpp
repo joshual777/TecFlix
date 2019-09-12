@@ -1,5 +1,6 @@
 #include "page.h"
 
+#include <stdlib.h>
 #include <QCoreApplication>
 #include <QtDebug>
 #include <QStringList>
@@ -14,7 +15,7 @@ page::page()
 }
 
 
-void chargefile(QString file){
+QString * chargefile(QString file){
 
     QFile *m_file;
     QStringList wordList, longer;
@@ -52,37 +53,35 @@ void chargefile(QString file){
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+         //Array to sending data
+         static QString  sender[9];
+
          // dynamically allocate memory of size M*N
          QString* A = new QString[totalrows * colums];
 
          int counter = 0;
 
          // assign values to allocated memory
-         for (int i = 0; i < 1200; i++){
-             qDebug() << i;
+         for (int i = 0; i < 1000; i++){
+             //qDebug() << i;
              for (int j = 0; j < colums; j++){
-                 qDebug() << j;
+                 //qDebug() << j;
                  *(A + i*colums + j) = wordList[counter];
                  counter++;
-                 qDebug() << *(A + i*colums + j);
+                 //qDebug() << *(A + i*colums + j);
             }
          }
 
-         qDebug() << "JOSHUA";
-         qDebug() << (A + 0*colums)[11];
-         qDebug() << (A + 2*colums)[11];
-
-//         // print the 2D array
-//         for (int i = 0; i < M; i++)
-//         {
-//             for (int j = 0; j < N; j++)
-//                 std::cout << *(A + i*N + j) << " ";	// or (A + i*N)[j])
-
-//             std::cout << std::endl;
-//         }
+         for (int b = 0; b <= 9; b++){
+             sender[b] = (A +b*colums)[11];
+             qDebug() << (A + b*colums)[11];
+             qDebug() << sender[b];
+            return sender;
+         }
 
 
-         // deallocate memory
-         delete[] A;
+
+//         // deallocate memory
+//         delete[] A;
      }
 }

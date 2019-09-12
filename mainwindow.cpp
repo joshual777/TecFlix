@@ -109,8 +109,8 @@ void MainWindow::on_btnnext_clicked()
     int last;  //Last variable takes the number from the last button
     QString textf = ui->btn1->text();  //Getting the value
     QString textl = ui->btn5->text();  //Getting the value
-    first = textf.toInt();  //Convertion to int
-    last = textl.toInt();   //Convertion to int
+    first = textf.toInt();  //Conversion to int
+    last = textl.toInt();   //Conversion to int
 
 //    qDebug() << first;
 //    qDebug() << last;
@@ -240,13 +240,34 @@ int MainWindow::Page(int parameter){
         qDebug()<< conteo;
         conteo--;
     }
+    return  0;
 }
 
 void MainWindow::on_btnselect_clicked()
 {
     m_fileName = QFileDialog::getOpenFileName(this, "Get Any File");
     ui->lineselect->setText(m_fileName);
-    chargefile(m_fileName);
+
+    //QLabel array to diplay the titles inside them
+    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
+                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
+
+
+    //Reciever the movies titles
+    QString *reciever;
+    reciever = chargefile(m_fileName);
+    qDebug() << "BREAK";
+    //chargefile(m_fileName);
+    qDebug() << *(reciever);
+
+    ui->lmovie1->setText(*(reciever));
+
+    //chargefile(m_fileName);
+//    for (int i = 0; i <= 9; i++){
+//        //options[i]->setText(*reciever);
+//        qDebug() << "JOSHUA";
+//        qDebug() << *(reciever+i);
+//    }
 }
 
 void MainWindow::on_btnupload_clicked()
