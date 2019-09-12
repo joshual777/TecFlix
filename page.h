@@ -10,7 +10,10 @@ public:
     ~page();
 
 
-    void chargefile(QString);
+    QString chargefile(QString);
+    QString *searchfile(QString, int);
+
+
 };
 
 #endif // PAGE_H

@@ -39,10 +39,24 @@ MainWindow::~MainWindow()
 void MainWindow::on_btn1_clicked()
 {
 
+    QString *reciever;
     QString page = ui->btn1->text();
+
     previous = page.toInt() -1 ;
     current = page.toInt();
     nextt = page.toInt() +1;
+
+    //QLabel array to diplay the titles inside them
+    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
+                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
+
+    reciever = Search(ui->lineselect->text(), current);
+
+    qDebug() << *(reciever);
+
+    ui->lmovie1->setText(*(reciever));
+
+    //HERE IS WHERE THE CICLE MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
 
     qDebug() << previous;
     qDebug() << current;
@@ -69,6 +83,8 @@ void MainWindow::on_btn3_clicked()
     previous = page.toInt() -1 ;
     current = page.toInt();
     nextt = page.toInt() +1;
+
+    //chargefile(ui->lineselect->text()); //Allows me to get the data by pressing it and access the function
 
     qDebug() << previous;
     qDebug() << current;
@@ -248,19 +264,12 @@ void MainWindow::on_btnselect_clicked()
     m_fileName = QFileDialog::getOpenFileName(this, "Get Any File");
     ui->lineselect->setText(m_fileName);
 
-    //QLabel array to diplay the titles inside them
-    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
-                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
-
-
-    //Reciever the movies titles
-    QString *reciever;
-    reciever = chargefile(m_fileName);
+    chargefile(m_fileName);
     qDebug() << "BREAK";
     //chargefile(m_fileName);
-    qDebug() << *(reciever);
 
-    ui->lmovie1->setText(*(reciever));
+
+    //ui->lmovie1->setText(*(reciever));
 
     //chargefile(m_fileName);
 //    for (int i = 0; i <= 9; i++){
@@ -272,76 +281,6 @@ void MainWindow::on_btnselect_clicked()
 
 void MainWindow::on_btnupload_clicked()
 {
-
-//    QStringList wordList, longer;
-//    int colums, totalrows, amount;
-
-//     m_file = new QFile(m_fileName);
-//     if (m_file->open(QIODevice::ReadOnly))
-//     {
-//         //File opened successfully
-
-//         //Variables to manage the file
-//         QString data;  //Read the whole csv file
-//         QString size;  //Read just the first line in order to take the main information
-
-//         size = m_file->readLine();    //Size read the first line
-//         data = m_file->readAll();  //Reading the file
-
-//         longer = size.split(','); //Sparating the first row when finds a ','
-//         wordList = data.split(','); //Separating the file when finds a ","
-
-//         colums = longer.length() - 1; //This variable gives me the amount of colums
-//         totalrows = wordList.length() /colums +1; //This variable gives the amount of rows in the csv
-//         amount = wordList.length(); //Variable who has the amount of the whole csv
-
-
-//         //Monitorizing the varibales
-//         qDebug() << colums;
-//         qDebug() << totalrows;
-//         qDebug() << amount;
-
-//         //The array can  manage the whole csv in bigger cases will happen the same
-//         //but in order to work better it will be segment in fractions of 1200 movies to manage easily
-//         //file in eficienttly
-
-
-//         /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//         // dynamically allocate memory of size M*N
-//         QString* A = new QString[totalrows * colums];
-
-//         int counter = 0;
-
-//         // assign values to allocated memory
-//         for (int i = 0; i < 1200; i++){
-//             qDebug() << i;
-//             for (int j = 0; j < colums; j++){
-//                 qDebug() << j;
-//                 *(A + i*colums + j) = wordList[counter];
-//                 counter++;
-//                 qDebug() << *(A + i*colums + j);
-//            }
-//         }
-
-//         qDebug() << "JOSHUA";
-//         qDebug() << (A + 0*colums)[11];
-//         qDebug() << (A + 2*colums)[11];
-
-////         // print the 2D array
-////         for (int i = 0; i < M; i++)
-////         {
-////             for (int j = 0; j < N; j++)
-////                 std::cout << *(A + i*N + j) << " ";	// or (A + i*N)[j])
-
-////             std::cout << std::endl;
-////         }
-
-
-//         // deallocate memory
-//         delete[] A;
-//     }
-
 }
 
 void MainWindow::on_btnfile_clicked()
