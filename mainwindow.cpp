@@ -42,7 +42,7 @@ void MainWindow::on_btn1_clicked()
     QString *reciever;
     QString page = ui->btn1->text();
 
-    previous = page.toInt() -1 ;
+    previous = page.toInt() -1;
     current = page.toInt();
     nextt = page.toInt() +1;
 
@@ -50,13 +50,21 @@ void MainWindow::on_btn1_clicked()
     QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
                           ui->lmovie7, ui->lmovie8, ui->lmovie9};
 
-    reciever = Search(ui->lineselect->text(), current);
+    //reciever = Search(ui->lineselect->text(), current);
 
-    qDebug() << *(reciever);
+    int pos = current;
+    int slicer = pos*9 - 9;
+    qDebug() << pos;
+    qDebug() << slicer;
 
-    ui->lmovie1->setText(*(reciever));
+    while(slicer < current*9){
+        reciever = Search(ui->lineselect->text(), slicer);
+        options[slicer]->setText(*(reciever));
+        qDebug() << *(reciever);
+        slicer++;
+    }
 
-    //HERE IS WHERE THE CICLE MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
+    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
 
     qDebug() << previous;
     qDebug() << current;
@@ -66,10 +74,33 @@ void MainWindow::on_btn1_clicked()
 
 void MainWindow::on_btn2_clicked()
 {
+    QString *reciever;
     QString page = ui->btn2->text();
-    previous = page.toInt() -1 ;
+
+    previous = page.toInt() -1;
     current = page.toInt();
     nextt = page.toInt() +1;
+
+    //QLabel array to diplay the titles inside them
+    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
+                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
+
+    //reciever = Search(ui->lineselect->text(), current);
+
+    int pos = current;
+    int slicer = pos*9 - 9;
+    int index = 0;
+    qDebug() << pos;
+    qDebug() << slicer;
+
+    while(slicer < current*9){
+        reciever = Search(ui->lineselect->text(), slicer);
+        options[index]->setText(*(reciever));
+        qDebug() << *(reciever);
+        slicer++;
+        index++;
+    }
+
 
     qDebug() << previous;
     qDebug() << current;

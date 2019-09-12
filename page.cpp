@@ -105,12 +105,6 @@ QString *Search(QString tosearch, int page){
          totalrows = wordList.length() /colums +1; //This variable gives the amount of rows in the csv
          amount = wordList.length(); //Variable who has the amount of the whole csv
 
-
-         //Monitorizing the varibales
-         qDebug() << colums;
-         qDebug() << totalrows;
-         qDebug() << amount;
-
          //The array can  manage the whole csv in bigger cases will happen the same
          //but in order to work better it will be segment in fractions of 1200 movies to manage easily
          //file in eficienttly
@@ -127,7 +121,7 @@ QString *Search(QString tosearch, int page){
          int counter = 0;
 
          // assign values to allocated memory
-         for (int i = 0; i < 9; i++){
+         for (int i = 0; i < 9*page; i++){
              //qDebug() << i;
              for (int j = 0; j < colums; j++){
                  //qDebug() << j;
