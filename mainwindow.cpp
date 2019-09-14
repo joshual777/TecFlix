@@ -50,43 +50,6 @@ void MainWindow::on_btn1_clicked()
     QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
                           ui->lmovie7, ui->lmovie8, ui->lmovie9};
 
-    //reciever = Search(ui->lineselect->text(), current);
-
-    int pos = current;
-    int slicer = pos*9 - 9;
-    qDebug() << pos;
-    qDebug() << slicer;
-
-    while(slicer < current*9){
-        reciever = Search(ui->lineselect->text(), slicer);
-        options[slicer]->setText(*(reciever));
-        qDebug() << *(reciever);
-        slicer++;
-    }
-
-    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
-
-    qDebug() << previous;
-    qDebug() << current;
-    qDebug() << nextt;
-    qDebug() << "first";
-}
-
-void MainWindow::on_btn2_clicked()
-{
-    QString *reciever;
-    QString page = ui->btn2->text();
-
-    previous = page.toInt() -1;
-    current = page.toInt();
-    nextt = page.toInt() +1;
-
-    //QLabel array to diplay the titles inside them
-    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
-                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
-
-    //reciever = Search(ui->lineselect->text(), current);
-
     int pos = current;
     int slicer = pos*9 - 9;
     int index = 0;
@@ -101,7 +64,42 @@ void MainWindow::on_btn2_clicked()
         index++;
     }
 
+    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
 
+    qDebug() << previous;
+    qDebug() << current;
+    qDebug() << nextt;
+    qDebug() << "first";
+}
+
+void MainWindow::on_btn2_clicked()
+{
+    QString *reciever2;
+    QString page = ui->btn2->text();
+
+    previous = page.toInt() -1;
+    current = page.toInt();
+    nextt = page.toInt() +1;
+
+    //QLabel array to diplay the titles inside them
+    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
+                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
+
+    int pos = current;
+    int slicer = pos*9 - 9;
+    int index = 0;
+    qDebug() << pos;
+    qDebug() << slicer;
+
+    while(slicer < current*9){
+        reciever2 = Search(ui->lineselect->text(), slicer);
+        options[index]->setText(*(reciever2));
+        qDebug() << *(reciever2);
+        slicer++;
+        index++;
+    }
+
+    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
     qDebug() << previous;
     qDebug() << current;
     qDebug() << nextt;
@@ -110,12 +108,32 @@ void MainWindow::on_btn2_clicked()
 
 void MainWindow::on_btn3_clicked()
 {
+    QString *reciever3;
     QString page = ui->btn3->text();
-    previous = page.toInt() -1 ;
+
+    previous = page.toInt() -1;
     current = page.toInt();
     nextt = page.toInt() +1;
 
-    //chargefile(ui->lineselect->text()); //Allows me to get the data by pressing it and access the function
+    //QLabel array to diplay the titles inside them
+    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
+                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
+
+    int pos = current;
+    int slicer = pos*9 - 9;
+    int index = 0;
+    qDebug() << pos;
+    qDebug() << slicer;
+
+    while(slicer < current*9){
+        reciever3 = Search(ui->lineselect->text(), slicer);
+        options[index]->setText(*(reciever3));
+        qDebug() << *(reciever3);
+        slicer++;
+        index++;
+    }
+
+    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
 
     qDebug() << previous;
     qDebug() << current;
@@ -125,10 +143,32 @@ void MainWindow::on_btn3_clicked()
 
 void MainWindow::on_btn4_clicked()
 {
+    QString *reciever4;
     QString page = ui->btn4->text();
-    previous = page.toInt() -1 ;
+
+    previous = page.toInt() -1;
     current = page.toInt();
     nextt = page.toInt() +1;
+
+    //QLabel array to diplay the titles inside them
+    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
+                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
+
+    int pos = current;
+    int slicer = pos*9 - 9;
+    int index = 0;
+    qDebug() << pos;
+    qDebug() << slicer;
+
+    while(slicer < current*9){
+        reciever4 = Search(ui->lineselect->text(), slicer);
+        options[index]->setText(*(reciever4));
+        qDebug() << *(reciever4);
+        slicer++;
+        index++;
+    }
+
+    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
 
     qDebug() << previous;
     qDebug() << current;
@@ -138,10 +178,32 @@ void MainWindow::on_btn4_clicked()
 
 void MainWindow::on_btn5_clicked()
 {
+    QString *reciever5;
     QString page = ui->btn5->text();
-    previous = page.toInt() -1 ;
+
+    previous = page.toInt() -1;
     current = page.toInt();
     nextt = page.toInt() +1;
+
+    //QLabel array to diplay the titles inside them
+    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
+                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
+
+    int pos = current;
+    int slicer = pos*9 - 9;
+    int index = 0;
+    qDebug() << pos;
+    qDebug() << slicer;
+
+    while(slicer < current*9){
+        reciever5 = Search(ui->lineselect->text(), slicer);
+        options[index]->setText(*(reciever5));
+        qDebug() << *(reciever5);
+        slicer++;
+        index++;
+    }
+
+    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
 
     qDebug() << previous;
     qDebug() << current;
