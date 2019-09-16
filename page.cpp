@@ -70,7 +70,7 @@ QString chargefile(QString file){
                  //qDebug() << j;
                  *(A + i*colums + j) = wordList[counter];
                  counter++;
-                 qDebug() << *(A + i*colums + j);
+                 //qDebug() << *(A + i*colums + j);
             }
          }
 
@@ -80,7 +80,7 @@ QString chargefile(QString file){
 }
 
 //SEARCH
-//This method allows me to seach for an specific element into the metadara, for example movies, actors and the movie link
+//This method allows me to seach for an specific element into the metadata, for example movies, actors and the movie link
 QString *Search(QString tosearch, int page){
     QFile *m_file;
     QStringList wordList, longer;

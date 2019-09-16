@@ -9,6 +9,12 @@
 #include <QTextStream>
 #include <QFileDialog>
 
+#include <QUrl>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QNetworkAccessManager>
+
+
 #include "list.h"
 #include "list.cpp"
 
@@ -25,6 +31,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lineupload->setVisible(false);
     ui->btnselect->setVisible(false);
     ui->btnupload->setVisible(false);
+
+
+//QNetworkAccessManager* mManager = new QNetworkAccessManager(this);
+//connect(mManager, &QNetworkAccessManager::finished, this, [&](QNetworkReply *reply){
+//        QByteArray data = reply->readAll();
+//        QString str = QString::fromLatin1(data);
+//        qDebug() << str;
+//        qDebug() << "ENTER";
+//    });
+
 }
 
 //Variables to take pages
@@ -374,6 +390,22 @@ void MainWindow::on_btnselect_clicked()
 
 void MainWindow::on_btnupload_clicked()
 {
+    QNetworkAccessManager manager;
+    QNetworkReply *response = manager.get(QNetworkRequest(QUrl("https://www.imdb.com/title/tt0499549/mediaviewer/rm843615744")));
+    QEventLoop event;
+    connect(response,SIGNAL(clicked()),&event,SLOT(handleButton()));
+    event.exec();
+    QString html = response->readAll();
+    //qDebug() << html;
+    qDebug() << html.indexOf("https://m.media-amazon");
+    qDebug() << html.size();
+    QRegExp rx("[https]");// match a comma or a space
+    QStringList list = html.split(rx, QString::SkipEmptyParts);
+    qDebug() << list;
+    qDebug() << list.size();
+    qDebug() << list.takeAt(4);
+
+//    QNetworkRequest mManager =QNetworkRequest(QUrl("https://www.imdb.com/title/tt0499549/mediaviewer/rm843615744"));
 }
 
 void MainWindow::on_btnfile_clicked()
@@ -383,3 +415,6 @@ void MainWindow::on_btnfile_clicked()
     ui->btnselect->setVisible(true);
     ui->btnupload->setVisible(true);
 }
+
+
+

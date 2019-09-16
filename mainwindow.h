@@ -7,11 +7,14 @@
 #include <node.h>
 
 #include <QString>
+#include <QNetworkAccessManager>
 #include <QFile>
 
 namespace Ui {
 class MainWindow;
 }
+
+class QNetworkAcessManager;
 
 class MainWindow : public QMainWindow
 {
@@ -40,6 +43,7 @@ private slots:
     void on_btnselect_clicked();
     void on_btnupload_clicked();
     void on_btnfile_clicked();
+    void readyRead();
 
 private:
     Ui::MainWindow *ui;
@@ -47,6 +51,7 @@ private:
     // You must save the file on the heap
     // If you create a file object on the stack, the program will crash.
     QFile *m_file;
+    QNetworkAcessManager *mManager;
 };
 
 #endif // MAINWINDOW_H
