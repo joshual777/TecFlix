@@ -390,22 +390,7 @@ void MainWindow::on_btnselect_clicked()
 
 void MainWindow::on_btnupload_clicked()
 {
-    QNetworkAccessManager manager;
-    QNetworkReply *response = manager.get(QNetworkRequest(QUrl("https://www.imdb.com/title/tt0499549/mediaviewer/rm843615744")));
-    QEventLoop event;
-    connect(response,SIGNAL(clicked()),&event,SLOT(handleButton()));
-    event.exec();
-    QString html = response->readAll();
-    //qDebug() << html;
-    qDebug() << html.indexOf("https://m.media-amazon");
-    qDebug() << html.size();
-    QRegExp rx("[https]");// match a comma or a space
-    QStringList list = html.split(rx, QString::SkipEmptyParts);
-    qDebug() << list;
-    qDebug() << list.size();
-    qDebug() << list.takeAt(4);
 
-//    QNetworkRequest mManager =QNetworkRequest(QUrl("https://www.imdb.com/title/tt0499549/mediaviewer/rm843615744"));
 }
 
 void MainWindow::on_btnfile_clicked()
