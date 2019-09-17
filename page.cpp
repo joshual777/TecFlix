@@ -130,7 +130,7 @@ QString *Search(QString tosearch, int page){
                  //qDebug() << (A + i*colums + j);
             }
          }
-            return  (A + page*colums + 11);
+            return  (A + page*colums + 17);
 
 
      }

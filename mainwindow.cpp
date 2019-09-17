@@ -18,6 +18,9 @@
 #include "list.h"
 #include "list.cpp"
 
+#include "html.h"
+#include "html.cpp"
+
 #include <page.h>
 #include <page.cpp>
 
@@ -31,15 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lineupload->setVisible(false);
     ui->btnselect->setVisible(false);
     ui->btnupload->setVisible(false);
-
-
-//QNetworkAccessManager* mManager = new QNetworkAccessManager(this);
-//connect(mManager, &QNetworkAccessManager::finished, this, [&](QNetworkReply *reply){
-//        QByteArray data = reply->readAll();
-//        QString str = QString::fromLatin1(data);
-//        qDebug() << str;
-//        qDebug() << "ENTER";
-//    });
 
 }
 
@@ -75,10 +69,32 @@ void MainWindow::on_btn1_clicked()
     while(slicer < current*9){
         reciever = Search(ui->lineselect->text(), slicer);
         options[index]->setText(*(reciever));
+        htmlGet({*reciever}, [](const QString &body){
+            List <QString> line;
+            qDebug() << body.indexOf("https://m.media-amazon");
+            QRegExp rx("https");// match a comma or a space
+            QStringList list = body.split(rx, QString::SkipEmptyParts);
+            qDebug() << "https" + list.takeAt(14).left(88);
+            //static QString A = "https" + list.takeAt(14).left(88);
+       });
         qDebug() << *(reciever);
         slicer++;
         index++;
     }
+
+
+
+    QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+    QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_.jpg"));
+    QNetworkReply *reply = netAccManager->get(request);
+    QEventLoop loop;
+    QObject::connect(reply,SIGNAL(finished()),&loop,SLOT(quit()));
+    loop.exec();
+    QByteArray bytes = reply->readAll();
+    QImage img(20, 20, QImage::Format_Indexed8);
+    img.loadFromData(bytes);
+    ui->lmovie1->setPixmap(QPixmap::fromImage(img));
+
 
     //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
 
