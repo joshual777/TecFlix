@@ -46,6 +46,23 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void take(QString element){
+    htmlGet({element}, [](const QString &body){
+        List <QString> line;
+        QRegExp rx("https");// match a comma or a space
+        QStringList list = body.split(rx, QString::SkipEmptyParts);
+
+        for (int i = 0; i <= list.size(); i++){
+               if (i == 14){
+                //qDebug() <<  list.takeAt(i);
+                qDebug() << "https" + list.takeAt(i).left(88);
+                //QString a = "https" + list.takeAt(i).left(88);
+                //qDebug()<< a;
+                //return  "https" + list.takeAt(i).left(88);
+                }
+            }
+   });
+}
 void MainWindow::on_btn1_clicked()
 {
 
@@ -69,14 +86,18 @@ void MainWindow::on_btn1_clicked()
     while(slicer < current*9){
         reciever = Search(ui->lineselect->text(), slicer);
         options[index]->setText(*(reciever));
-        htmlGet({*reciever}, [](const QString &body){
-            List <QString> line;
-            qDebug() << body.indexOf("https://m.media-amazon");
-            QRegExp rx("https");// match a comma or a space
-            QStringList list = body.split(rx, QString::SkipEmptyParts);
-            qDebug() << "https" + list.takeAt(14).left(88);
-            //static QString A = "https" + list.takeAt(14).left(88);
-       });
+        if((*(reciever)).contains("https")){
+            qDebug() << *(reciever);
+            take(*(reciever));
+            qDebug() << "A";
+        }
+        else{
+            if ((reciever)->insert( 4, "s" ).contains("https")){
+                qDebug() << (reciever)->remove(4);
+                take((reciever)->remove(4));
+            }
+            qDebug() << "B";
+        }
         qDebug() << *(reciever);
         slicer++;
         index++;
@@ -93,7 +114,9 @@ void MainWindow::on_btn1_clicked()
     QByteArray bytes = reply->readAll();
     QImage img(20, 20, QImage::Format_Indexed8);
     img.loadFromData(bytes);
-    ui->lmovie1->setPixmap(QPixmap::fromImage(img));
+    int w = ui->lmovie1->width();
+    int h = ui->lmovie1->height();
+    ui->lmovie1->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
 
 
     //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
@@ -126,10 +149,36 @@ void MainWindow::on_btn2_clicked()
     while(slicer < current*9){
         reciever2 = Search(ui->lineselect->text(), slicer);
         options[index]->setText(*(reciever2));
+        if((*(reciever2)).contains("https")){
+            qDebug() << *(reciever2);
+            take(*(reciever2));
+            qDebug() << "A";
+        }
+        else{
+            if ((reciever2)->insert( 4, "s" ).contains("https")){
+                qDebug() << (reciever2)->remove(4);
+                take((reciever2)->remove(4));
+            }
+            qDebug() << "B";
+        }
         qDebug() << *(reciever2);
         slicer++;
         index++;
     }
+
+
+    QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+    QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BMTU2NTYxODcwMF5BMl5BanBnXkFtZTcwNDk1NDY0Nw@@._V1_.jpg"));
+    QNetworkReply *reply = netAccManager->get(request);
+    QEventLoop loop;
+    QObject::connect(reply,SIGNAL(finished()),&loop,SLOT(quit()));
+    loop.exec();
+    QByteArray bytes = reply->readAll();
+    QImage img(20, 20, QImage::Format_Indexed8);
+    img.loadFromData(bytes);
+    int w = ui->lmovie1->width();
+    int h = ui->lmovie1->height();
+    ui->lmovie2->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
 
     //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
     qDebug() << previous;
@@ -160,6 +209,18 @@ void MainWindow::on_btn3_clicked()
     while(slicer < current*9){
         reciever3 = Search(ui->lineselect->text(), slicer);
         options[index]->setText(*(reciever3));
+        if((*(reciever3)).contains("https")){
+            qDebug() << *(reciever3);
+            take(*(reciever3));
+            qDebug() << "A";
+        }
+        else{
+            if ((reciever3)->insert( 4, "s" ).contains("https")){
+                qDebug() << (reciever3)->remove(4);
+                take((reciever3)->remove(4));
+            }
+            qDebug() << "B";
+        }
         qDebug() << *(reciever3);
         slicer++;
         index++;
@@ -195,6 +256,18 @@ void MainWindow::on_btn4_clicked()
     while(slicer < current*9){
         reciever4 = Search(ui->lineselect->text(), slicer);
         options[index]->setText(*(reciever4));
+        if((*(reciever4)).contains("https")){
+            qDebug() << *(reciever4);
+            take(*(reciever4));
+            qDebug() << "A";
+        }
+        else{
+            if ((reciever4)->insert( 4, "s" ).contains("https")){
+                qDebug() << (reciever4)->remove(4);
+                take((reciever4)->remove(4));
+            }
+            qDebug() << "B";
+        }
         qDebug() << *(reciever4);
         slicer++;
         index++;
@@ -230,6 +303,18 @@ void MainWindow::on_btn5_clicked()
     while(slicer < current*9){
         reciever5 = Search(ui->lineselect->text(), slicer);
         options[index]->setText(*(reciever5));
+        if((*(reciever5)).contains("https")){
+            qDebug() << *(reciever5);
+            take(*(reciever5));
+            qDebug() << "A";
+        }
+        else{
+            if ((reciever5)->insert( 4, "s" ).contains("https")){
+                qDebug() << (reciever5)->remove(4);
+                take((reciever5)->remove(4));
+            }
+            qDebug() << "B";
+        }
         qDebug() << *(reciever5);
         slicer++;
         index++;

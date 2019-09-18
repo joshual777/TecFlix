@@ -570,6 +570,9 @@
 		padding: 5px; 	
 }</string>
     </property>
+    <property name="text">
+     <string>movie_metadata.csv</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="lineupload">
     <property name="geometry">
