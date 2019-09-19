@@ -31,7 +31,8 @@ SOURCES += \
     node.cpp \
     list.cpp \
     page.cpp \
-    label.cpp
+    label.cpp \
+    viewer.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,10 +40,12 @@ HEADERS += \
     node.h \
     list.h \
     page.h \
-    label.h
+    label.h \
+    viewer.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    viewer.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

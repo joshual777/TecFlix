@@ -23,6 +23,7 @@
 #include <page.cpp>
 
 #include <label.h>
+#include <viewer.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -84,7 +85,6 @@ void take(QString element){
 
 void MainWindow::Displaying(int getpage){
     QString *reciever;  //This pointer is assign in order to receive teh data from the csv
-    //QString page = getpage;   //Take the page number
 
     //Giving the previous page
     List <QString> previous_page;
@@ -181,24 +181,6 @@ void MainWindow::on_btn1_clicked()
     QString thispage = ui->btn1->text();
     int sendpage = thispage.toInt();  //Convertion from QString to int
     Displaying(sendpage);  //The page will send to the Displaying method
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
-//    QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_.jpg"));
-//    QNetworkReply *reply = netAccManager->get(request);
-//    QEventLoop loop;
-//    QObject::connect(reply,SIGNAL(finished()),&loop,SLOT(quit()));
-//    loop.exec();
-//    QByteArray bytes = reply->readAll();
-//    QImage img(20, 20, QImage::Format_Indexed8);
-//    img.loadFromData(bytes);
-//    int w = ui->lmovie1->width();
-//    int h = ui->lmovie1->height();
-//    ui->lmovie1->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
-
-
-//    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
 }
 
 
@@ -209,20 +191,6 @@ void MainWindow::on_btn2_clicked()
     QString thispage = ui->btn2->text();
     int sendpage = thispage.toInt();  //Convertion from QString to int
     Displaying(sendpage);  //The page will send to the Displaying method
-
-//    //Giving the previous page
-//    List <QString> previous_page;
-//    QString *elementp;
-//    int movie = current*9-9;
-//    qDebug() << movie;
-//    for (int p =0; p<=9; p++){
-//        elementp = GetPage(ui->lineselect->text(),movie);
-//        previous_page.add_head(*elementp);
-//        qDebug() << previous_page.getbyposicion(movie);
-//        qDebug() << movie;
-//        movie++;
-//    }
-
 
     QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
     QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BMTU2NTYxODcwMF5BMl5BanBnXkFtZTcwNDk1NDY0Nw@@._V1_.jpg"));
@@ -425,6 +393,11 @@ void MainWindow::on_btnfile_clicked()
 }
 
 void MainWindow::Mouse_Pressed(){
+
+    Viewer  Viewer;
+    Viewer.setModal(true);
+    Viewer.exec();
+
     QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
     QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BMTU2NTYxODcwMF5BMl5BanBnXkFtZTcwNDk1NDY0Nw@@._V1_.jpg"));
     QNetworkReply *reply = netAccManager->get(request);
