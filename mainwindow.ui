@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>572</width>
+    <width>550</width>
     <height>696</height>
    </rect>
   </property>
@@ -24,13 +24,13 @@
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="lmovie1">
+   <widget class="Label" name="lmovie1">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>140</y>
-      <width>101</width>
-      <height>151</height>
+      <x>100</x>
+      <y>100</y>
+      <width>121</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -41,17 +41,23 @@
 		padding: 5px; 	
 }</string>
     </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="indent">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="lmovie2">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>140</y>
-      <width>101</width>
-      <height>151</height>
+      <x>230</x>
+      <y>100</y>
+      <width>121</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -64,15 +70,18 @@
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="indent">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="lmovie3">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>140</y>
-      <width>101</width>
-      <height>151</height>
+      <x>360</x>
+      <y>100</y>
+      <width>121</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -85,15 +94,18 @@
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="indent">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="lmovie5">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>300</y>
-      <width>101</width>
-      <height>151</height>
+      <x>230</x>
+      <y>280</y>
+      <width>121</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -106,15 +118,18 @@
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="indent">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="lmovie6">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>300</y>
-      <width>101</width>
-      <height>151</height>
+      <x>360</x>
+      <y>280</y>
+      <width>121</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -127,15 +142,18 @@
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="indent">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="lmovie4">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>300</y>
-      <width>101</width>
-      <height>151</height>
+      <x>100</x>
+      <y>280</y>
+      <width>121</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -148,15 +166,18 @@
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="indent">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="lmovie8">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>230</x>
       <y>460</y>
-      <width>101</width>
-      <height>151</height>
+      <width>121</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -169,15 +190,18 @@
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="indent">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="lmovie9">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>360</x>
       <y>460</y>
-      <width>101</width>
-      <height>151</height>
+      <width>121</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -188,17 +212,26 @@
 		padding: 5px; 	
 }</string>
     </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+    <property name="indent">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="lmovie7">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>100</x>
       <y>460</y>
-      <width>101</width>
-      <height>151</height>
+      <width>121</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -212,12 +245,15 @@
     <property name="text">
      <string>TextLabel</string>
     </property>
+    <property name="indent">
+     <number>0</number>
+    </property>
    </widget>
    <widget class="QPushButton" name="btn1">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>630</y>
+      <x>190</x>
+      <y>650</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -237,8 +273,8 @@
    <widget class="QPushButton" name="btn2">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>630</y>
+      <x>230</x>
+      <y>650</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -258,8 +294,8 @@
    <widget class="QPushButton" name="btn3">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>630</y>
+      <x>270</x>
+      <y>650</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -279,8 +315,8 @@
    <widget class="QPushButton" name="btn4">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>630</y>
+      <x>310</x>
+      <y>650</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -300,8 +336,8 @@
    <widget class="QPushButton" name="btn5">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>630</y>
+      <x>350</x>
+      <y>650</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -322,7 +358,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>80</y>
+      <y>50</y>
       <width>621</width>
       <height>31</height>
      </rect>
@@ -368,8 +404,8 @@
    <widget class="QPushButton" name="btnnext">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>630</y>
+      <x>400</x>
+      <y>650</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -389,8 +425,8 @@
    <widget class="QPushButton" name="btnprev">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>630</y>
+      <x>140</x>
+      <y>650</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -410,8 +446,8 @@
    <widget class="QPushButton" name="btnnext_2">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>630</y>
+      <x>450</x>
+      <y>650</y>
       <width>41</width>
       <height>31</height>
      </rect>
@@ -431,8 +467,8 @@
    <widget class="QPushButton" name="btnprev_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>630</y>
+      <x>80</x>
+      <y>650</y>
       <width>41</width>
       <height>31</height>
      </rect>
@@ -478,8 +514,8 @@
    <widget class="QPushButton" name="btnfile">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>20</y>
+      <x>460</x>
+      <y>10</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -504,8 +540,8 @@
    <widget class="QPushButton" name="btnselect">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>0</y>
+      <x>220</x>
+      <y>10</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -531,7 +567,7 @@
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>40</y>
+      <y>10</y>
       <width>61</width>
       <height>31</height>
      </rect>
@@ -556,7 +592,7 @@
    <widget class="QLineEdit" name="lineselect">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>290</x>
       <y>10</y>
       <width>141</width>
       <height>25</height>
@@ -574,27 +610,16 @@
      <string>movie_metadata.csv</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineupload">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>40</y>
-      <width>141</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit{
-		background-color: yellow;
-		border: 1px solid black;
-		color: black;
-		padding: 5px; 	
-}</string>
-    </property>
-   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>Label</class>
+   <extends>QLabel</extends>
+   <header>label.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

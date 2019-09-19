@@ -30,14 +30,16 @@ SOURCES += \
     customview.cpp \
     node.cpp \
     list.cpp \
-    page.cpp
+    page.cpp \
+    label.cpp
 
 HEADERS += \
         mainwindow.h \
     customview.h \
     node.h \
     list.h \
-    page.h
+    page.h \
+    label.h
 
 FORMS += \
         mainwindow.ui

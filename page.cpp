@@ -9,6 +9,10 @@
 #include <QDebug>
 
 
+//                                  PAGE CLASS
+//This class manages the whole processes related to the csv reading and split their elements
+//in order to arrange them into a matrix and give and specific element by a given request
+
 page::page()
 {
 
@@ -58,7 +62,7 @@ QString chargefile(QString file){
          //Array to sending data
          static QString  sender[9];
 
-         // dynamically allocate memory of size M*N
+         //Dynamically allocate memory of size M*N
          QString* A = new QString[totalrows * colums];
 
          int counter = 0;
@@ -73,6 +77,7 @@ QString chargefile(QString file){
                  //qDebug() << *(A + i*colums + j);
             }
          }
+
 
          // deallocate memory
          delete[] A;

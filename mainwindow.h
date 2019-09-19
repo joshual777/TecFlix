@@ -44,6 +44,7 @@ private slots:
     void on_btnupload_clicked();
     void on_btnfile_clicked();
     void readyRead();
+    void Mouse_Pressed();
 
 private:
     Ui::MainWindow *ui;

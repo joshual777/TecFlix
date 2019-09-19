@@ -1,6 +1,11 @@
 #include "node.h"
+using namespace std;
 
-// Constructor por defecto
+
+//                                       NODE CLASS
+
+
+//Default Constructor
 template<typename T>
 
 Node<T>::Node()
@@ -9,7 +14,7 @@ Node<T>::Node()
     next = NULL;
 }
 
-// Constructor por parámetro
+//Parameter Constructor
 template<typename T>
 Node<T>::Node(T data_)
 {
@@ -17,7 +22,7 @@ Node<T>::Node(T data_)
     next = NULL;
 }
 
-// Eliminar todos los Nodos
+//Delete all nodes
 template<typename T>
 void Node<T>::delete_all()
 {
@@ -26,11 +31,10 @@ void Node<T>::delete_all()
     delete this;
 }
 
-// Imprimir un Nodo
+//Print a node
 template<typename T>
 void Node<T>::print()
 {
-    //cout << "Node-> " << "Dato: " << dato << " Direcion: " << this << " Siguiente: " << next << endl;
     cout << data << "-> ";
 }
 
