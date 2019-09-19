@@ -13,9 +13,10 @@ List<T>::List()
     m_head = NULL;
 }
 
-// Insertar al inicio
+
+// Insertar at the end
 template<typename T>
-void List<T>::add_head(T data_)
+void List<T>::add_end(T data_)
 {
     Node<T> *new_node = new Node<T> (data_);
     Node<T> *temp = m_head;
@@ -23,12 +24,10 @@ void List<T>::add_head(T data_)
     if (!m_head) {
         m_head = new_node;
     } else {
-        new_node->next = m_head;
-        m_head = new_node;
-
-        while (temp) {
+        while (temp->next != NULL) {
             temp = temp->next;
         }
+        temp->next = new_node;
     }
     m_num_nodes++;
 }

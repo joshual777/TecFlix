@@ -19,7 +19,7 @@ public:
     List();
     ~List();
 
-    void add_head(T);
+    void add_end(T);
     void del_by_position(int);
     void intersection(List);
     int size();

@@ -82,19 +82,27 @@ void take(QString element){
     }
 }
 
-//Method to give the first page, with the 9 posters on it
-void MainWindow::on_btn1_clicked()
-{
-
+void MainWindow::Displaying(int getpage){
     QString *reciever;  //This pointer is assign in order to receive teh data from the csv
-    QString page = ui->btn1->text();   //Take the page number
+    //QString page = getpage;   //Take the page number
 
+    //Giving the previous page
+    List <QString> previous_page;
+    QString *elementp;
+
+    //Giving the current page
+    List <QString> current_page;
+    QString *elementc;
+
+    //Giving the next page
+    List <QString> next_page;
+    QString *elementn;
 
     //This variables are in order to give the current, previous and  next position
     //Those are going to store the pages
-    previous = page.toInt() -1;
-    current = page.toInt();
-    nextt = page.toInt() +1;
+    previous = getpage -1;
+    current = getpage;
+    nextt = getpage +1;
 
     //QLabel pointer array to diplay the titles inside them
     QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
@@ -103,21 +111,47 @@ void MainWindow::on_btn1_clicked()
     //Variables to count and extract the exact positions from one specific cell
     int pos = current;  //Take the current page
     int slicer = pos*9 - 9;  //Give the multiple of 9 in order to count from that page
+    int past = previous*9 -9; //Gives the number start from the previous page
+    int follow = nextt*9 -9;  //Gives the number start from the next page
     int index = 0;   //To count the labels
+
 //    qDebug() << pos;
 //    qDebug() << slicer;
-
+//    qDebug() << follow;
+//    qDebug() << past;
 
     //A cycle to extract the information
     while(slicer < current*9){
+
+        //Storing the previous page
+        elementp = GetPage(ui->lineselect->text(),past);
+        previous_page.add_end(*elementp);
+        qDebug() << previous_page.getbyposicion(index);
+
+        //Storing the current page
+        elementc = GetPage(ui->lineselect->text(),slicer);
+        current_page.add_end(*elementc);
+        qDebug() << current_page.getbyposicion(index);
+
+        //Storing the next page
+        elementn= GetPage(ui->lineselect->text(),follow);
+        next_page.add_end(*elementn);
+        qDebug() << next_page.getbyposicion(index);
+
+        //Get the url storing on the given csv file
         reciever = Search(ui->lineselect->text(), slicer);
         options[index]->setText(*(reciever));
+
         take(*(reciever));
-        qDebug() << *(reciever);
+        //qDebug() << *(reciever);
         slicer++;
+        past++;
+        follow++;
         index++;
     }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
     QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_.jpg"));
     QNetworkReply *reply = netAccManager->get(request);
@@ -140,40 +174,54 @@ void MainWindow::on_btn1_clicked()
     qDebug() << "first";
 }
 
+//Method to give the first page, with the 9 posters on it
+void MainWindow::on_btn1_clicked()
+{
+    //Catch the number from the button to give the page
+    QString thispage = ui->btn1->text();
+    int sendpage = thispage.toInt();  //Convertion from QString to int
+    Displaying(sendpage);  //The page will send to the Displaying method
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+//    QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_.jpg"));
+//    QNetworkReply *reply = netAccManager->get(request);
+//    QEventLoop loop;
+//    QObject::connect(reply,SIGNAL(finished()),&loop,SLOT(quit()));
+//    loop.exec();
+//    QByteArray bytes = reply->readAll();
+//    QImage img(20, 20, QImage::Format_Indexed8);
+//    img.loadFromData(bytes);
+//    int w = ui->lmovie1->width();
+//    int h = ui->lmovie1->height();
+//    ui->lmovie1->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+
+
+//    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
+}
+
 
 //Method to give the second page, with the 9 posters on it
 void MainWindow::on_btn2_clicked()
 {
-    QString *reciever2;  //This pointer is assign in order to receive teh data from the csv
-    QString page = ui->btn2->text();   //Take the page number
+    //Catch the number from the button to give the page
+    QString thispage = ui->btn2->text();
+    int sendpage = thispage.toInt();  //Convertion from QString to int
+    Displaying(sendpage);  //The page will send to the Displaying method
 
-
-    //This variables are in order to give the current, previous and  next position
-    //Those are going to store the pages
-    previous = page.toInt() -1;
-    current = page.toInt();
-    nextt = page.toInt() +1;
-
-    //QLabel pointer array to diplay the titles inside them
-    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
-                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
-
-    //Variables to count and extract the exact positions from one specific cell
-    int pos = current;  //Take the current page
-    int slicer = pos*9 - 9;  //Give the multiple of 9 in order to count from that page
-    int index = 0;   //To count the labels
-//    qDebug() << pos;
-//    qDebug() << slicer;
-
-    //A cycle to extract the information
-    while(slicer < current*9){
-        reciever2 = Search(ui->lineselect->text(), slicer);
-        options[index]->setText(*(reciever2));
-        take(*(reciever2));
-        qDebug() << *(reciever2);
-        slicer++;
-        index++;
-    }
+//    //Giving the previous page
+//    List <QString> previous_page;
+//    QString *elementp;
+//    int movie = current*9-9;
+//    qDebug() << movie;
+//    for (int p =0; p<=9; p++){
+//        elementp = GetPage(ui->lineselect->text(),movie);
+//        previous_page.add_head(*elementp);
+//        qDebug() << previous_page.getbyposicion(movie);
+//        qDebug() << movie;
+//        movie++;
+//    }
 
 
     QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
@@ -188,140 +236,35 @@ void MainWindow::on_btn2_clicked()
     int w = ui->lmovie1->width();
     int h = ui->lmovie1->height();
     ui->lmovie2->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
-
-    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
-    qDebug() << previous;
-    qDebug() << current;
-    qDebug() << nextt;
-    qDebug() << "second";
 }
 
 
 //Method to give the third page, with the 9 posters on it
 void MainWindow::on_btn3_clicked()
 {
-    QString *reciever3;  //This pointer is assign in order to receive teh data from the csv
-    QString page = ui->btn3->text();   //Take the page number
-
-
-    //This variables are in order to give the current, previous and  next position
-    //Those are going to store the pages
-    previous = page.toInt() -1;
-    current = page.toInt();
-    nextt = page.toInt() +1;
-
-    //QLabel pointer array to diplay the titles inside them
-    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
-                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
-
-    //Variables to count and extract the exact positions from one specific cell
-    int pos = current;  //Take the current page
-    int slicer = pos*9 - 9;  //Give the multiple of 9 in order to count from that page
-    int index = 0;   //To count the labels
-//    qDebug() << pos;
-//    qDebug() << slicer;
-
-    //A cycle to extract the information
-    while(slicer < current*9){
-        reciever3 = Search(ui->lineselect->text(), slicer);
-        options[index]->setText(*(reciever3));
-        take(*(reciever3));
-        qDebug() << *(reciever3);
-        slicer++;
-        index++;
-    }
-
-    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
-
-    qDebug() << previous;
-    qDebug() << current;
-    qDebug() << nextt;
-    qDebug() << "third";
+    //Catch the number from the button to give the page
+    QString thispage = ui->btn3->text();
+    int sendpage = thispage.toInt();  //Convertion from QString to int
+    Displaying(sendpage);  //The page will send to the Displaying method
 }
 
 
 //Method to give the fourth page, with the 9 posters on it
 void MainWindow::on_btn4_clicked()
 {
-    QString *reciever4;  //This pointer is assign in order to receive teh data from the csv
-    QString page = ui->btn4->text();   //Take the page number
-
-
-    //This variables are in order to give the current, previous and  next position
-    //Those are going to store the pages
-    previous = page.toInt() -1;
-    current = page.toInt();
-    nextt = page.toInt() +1;
-
-    //QLabel pointer array to diplay the titles inside them
-    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
-                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
-
-    //Variables to count and extract the exact positions from one specific cell
-    int pos = current;  //Take the current page
-    int slicer = pos*9 - 9;  //Give the multiple of 9 in order to count from that page
-    int index = 0;   //To count the labels
-//    qDebug() << pos;
-//    qDebug() << slicer;
-
-    //A cycle to extract the information
-    while(slicer < current*9){
-        reciever4 = Search(ui->lineselect->text(), slicer);
-        options[index]->setText(*(reciever4));
-        take(*(reciever4));
-        qDebug() << *(reciever4);
-        slicer++;
-        index++;
-    }
-
-    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
-
-    qDebug() << previous;
-    qDebug() << current;
-    qDebug() << nextt;
-    qDebug() << "fourth";
+    //Catch the number from the button to give the page
+    QString thispage = ui->btn4->text();
+    int sendpage = thispage.toInt();  //Convertion from QString to int
+    Displaying(sendpage);  //The page will send to the Displaying method
 }
 
 //Method to give the fifth page, with the 9 posters on it
 void MainWindow::on_btn5_clicked()
 {
-    QString *reciever5;  //This pointer is assign in order to receive teh data from the csv
-    QString page = ui->btn5->text();   //Take the page number
-
-
-    //This variables are in order to give the current, previous and  next position
-    //Those are going to store the pages
-    previous = page.toInt() -1;
-    current = page.toInt();
-    nextt = page.toInt() +1;
-
-    //QLabel pointer array to diplay the titles inside them
-    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
-                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
-
-    //Variables to count and extract the exact positions from one specific cell
-    int pos = current;  //Take the current page
-    int slicer = pos*9 - 9;  //Give the multiple of 9 in order to count from that page
-    int index = 0;   //To count the labels
-//    qDebug() << pos;
-//    qDebug() << slicer;
-
-    //A cycle to extract the information
-    while(slicer < current*9){
-        reciever5 = Search(ui->lineselect->text(), slicer);
-        options[index]->setText(*(reciever5));
-        take(*(reciever5));
-        qDebug() << *(reciever5);
-        slicer++;
-        index++;
-    }
-
-    //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
-
-    qDebug() << previous;
-    qDebug() << current;
-    qDebug() << nextt;
-    qDebug() << "fifth";
+    //Catch the number from the button to give the page
+    QString thispage = ui->btn5->text();
+    int sendpage = thispage.toInt();  //Convertion from QString to int
+    Displaying(sendpage);  //The page will send to the Displaying method
 }
 
 

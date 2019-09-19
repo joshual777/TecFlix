@@ -45,6 +45,7 @@ private slots:
     void on_btnfile_clicked();
     void readyRead();
     void Mouse_Pressed();
+    void Displaying(int getpage);
 
 private:
     Ui::MainWindow *ui;
