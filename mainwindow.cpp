@@ -57,6 +57,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->btnselect->setVisible(false);
     ui->btnupload->setVisible(false);
 
+//    QPixmap pix("/home/joshua/Documentos/movie.jpg");
+//    int w = ui->lposter->width();
+//    int h = ui->lposter->height();
+//    ui->lposter->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+
 
     //Creating the slot for the labels, it will has the function to display the images and videos in a new window
     connect(ui->lmovie1, SIGNAL(Mouse_Pressed()),this, SLOT(Mouse_Pressed()));

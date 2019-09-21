@@ -610,6 +610,59 @@
      <string>movie_metadata.csv</string>
     </property>
    </widget>
+   <widget class="QLabel" name="lposter">
+    <property name="geometry">
+     <rect>
+      <x>-20</x>
+      <y>0</y>
+      <width>621</width>
+      <height>691</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: black;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../movie.jpg</pixmap>
+    </property>
+    <property name="indent">
+     <number>0</number>
+    </property>
+   </widget>
+   <zorder>lposter</zorder>
+   <zorder>lmovie1</zorder>
+   <zorder>lmovie2</zorder>
+   <zorder>lmovie3</zorder>
+   <zorder>lmovie5</zorder>
+   <zorder>lmovie6</zorder>
+   <zorder>lmovie4</zorder>
+   <zorder>lmovie8</zorder>
+   <zorder>lmovie9</zorder>
+   <zorder>lmovie7</zorder>
+   <zorder>btn1</zorder>
+   <zorder>btn2</zorder>
+   <zorder>btn3</zorder>
+   <zorder>btn4</zorder>
+   <zorder>btn5</zorder>
+   <zorder>label_10</zorder>
+   <zorder>titlel</zorder>
+   <zorder>btnnext</zorder>
+   <zorder>btnprev</zorder>
+   <zorder>btnnext_2</zorder>
+   <zorder>btnprev_2</zorder>
+   <zorder>pagel</zorder>
+   <zorder>btnfile</zorder>
+   <zorder>btnselect</zorder>
+   <zorder>btnupload</zorder>
+   <zorder>lineselect</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
