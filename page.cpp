@@ -8,6 +8,9 @@
 #include <QTextStream>
 #include <QDebug>
 
+#include <list.h>
+#include <list.cpp>
+
 
 //                                  PAGE CLASS
 //This class manages the whole processes related to the csv reading and split their elements
@@ -59,34 +62,30 @@ QString chargefile(QString file){
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         //Array to sending data
-         static QString  sender[9];
 
-         //Dynamically allocate memory of size M*N
-         QString* A = new QString[totalrows * colums];
+         //Working with the list
+         List <QString> line;
 
-         int counter = 0;
+
+         int counter = 0;  //Counter variable to add elements to the list
 
          // assign values to allocated memory
-         for (int i = 0; i < 5000; i++){
+         for (int i = 1; i <= 100; i++){
              //qDebug() << i;
-             for (int j = 0; j < colums; j++){
+             for (int j = 1; j <= colums; j++){
                  //qDebug() << j;
-                 *(A + i*colums + j) = wordList[counter];
-                 counter++;
-                 //qDebug() << *(A + i*colums + j);
+                 //qDebug() << counter;
+                 line.add_end(wordList[counter]);  //Adding elements to the single linked list
+                 counter++;   //Incrementing the counter to take the next element
             }
          }
 
-
-         // deallocate memory
-         delete[] A;
      }
 }
 
 //SEARCH
 //This method allows me to seach for an specific element into the metadata, for example movies, actors and the movie link
-QString *Search(QString tosearch, int page){
+QString Search(QString tosearch, int page){
     QFile *m_file;
     QStringList wordList, longer;
     int colums, totalrows, amount;
@@ -114,35 +113,31 @@ QString *Search(QString tosearch, int page){
          //but in order to work better it will be segment in fractions of 1200 movies to manage easily
          //file in eficienttly
 
-
          /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         //Array to sending data
-         static QString  sender[9];
+         //Working with the list
+         List <QString> line;
 
-         // dynamically allocate memory of size M*N
-         QString* A = new QString[totalrows * colums];
-
-         int counter = 0;
+         //qDebug()<< page;
+         int counter = 0;  //Counter variable to add elements to the list
 
          // assign values to allocated memory
-         for (int i = 0; i < 9*page; i++){
+         for (int i = 1; i <= 9*page; i++){
              //qDebug() << i;
-             for (int j = 0; j < colums; j++){
+             for (int j = 1; j <= colums; j++){
                  //qDebug() << j;
-                 *(A + i*colums + j) = wordList[counter];
-                 counter++;
-                 //qDebug() << (A + i*colums + j);
+                 //qDebug() << counter;
+                 line.add_end(wordList[counter]);  //Adding elements to the single linked list
+                 counter++;   //Incrementing the counter to take the next element
             }
          }
-            return  (A + page*colums + 17);
-
+         return line.getbyposicion(page*27-10);  //Returning the node with the link given in the csv as QString
      }
 }
 
 //GetPage
 //This mehtod gives the page by an given request
-QString *GetPage(QString tosearch, int page){
+QString GetPage(QString tosearch, int page){
     QFile *m_file;
     QStringList wordList, longer;
     int colums, totalrows, amount;
@@ -166,34 +161,28 @@ QString *GetPage(QString tosearch, int page){
          totalrows = wordList.length() /colums +1; //This variable gives the amount of rows in the csv
          amount = wordList.length(); //Variable who has the amount of the whole csv
 
-         //The array can  manage the whole csv in bigger cases will happen the same
-         //but in order to work better it will be segment in fractions of 1200 movies to manage easily
-         //file in eficienttly
-
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-         //Array to sending data
-         static QString  sender[9];
+         //Working with the list
+         List <QString> line;
 
-         // dynamically allocate memory of size M*N
-         QString* A = new QString[totalrows * colums];
-
-         int counter = 0;
+         //qDebug()<< page;
+         int counter = 0;  //Counter variable to add elements to the list
 
          // assign values to allocated memory
-         for (int i = 0; i < 9*page; i++){
+         for (int i = 1; i <= 9*page; i++){
              //qDebug() << i;
-             for (int j = 0; j < colums; j++){
+             for (int j = 1; j <= colums; j++){
                  //qDebug() << j;
-                 *(A + i*colums + j) = wordList[counter];
-                 counter++;
-                 //qDebug() << (A + i*colums + j);
+                 //qDebug() << counter;
+                 line.add_end(wordList[counter]);  //Adding elements to the single linked list
+                 counter++;   //Incrementing the counter to take the next element
             }
          }
-            return  (A + page*colums + 11);
-
+         return line.getbyposicion(page*27-16);  //Returning the node with the link given in the csv as QString
      }
 }
+
 
 

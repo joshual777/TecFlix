@@ -7,6 +7,7 @@
 #include <qfile.h>
 #include <QTextStream>
 #include <QFileDialog>
+#include <QMessageBox>
 
 #include <QUrl>
 #include <QNetworkReply>
@@ -14,7 +15,7 @@
 #include <QNetworkAccessManager>
 
 #include "list.h"
-#include "list.cpp"
+//#include "list.cpp"
 
 #include "html.h"
 #include "html.cpp"
@@ -30,6 +31,26 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //Check if there is internet aviable
+    QNetworkAccessManager nam;
+    QNetworkRequest req(QUrl("https://www.imdb.com"));
+    QNetworkReply* reply = nam.get(req);
+    QEventLoop loop;
+    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    loop.exec();
+    //If there is internet the program can be execute
+    if (reply->bytesAvailable()){
+        QMessageBox::information(this, "Info", "You are connected to the internet :)");
+    }
+    //If threre is not internet the program will close
+    else{
+        QMessageBox::critical(this, "Info", "You are not connected to the internet :(");
+        ui->lineselect->setVisible(false);
+        ui->btnselect->setVisible(false);
+        ui->btnupload->setVisible(false);
+        ui->label_10->setVisible(false);
+    }
 
     //Making thos elements invisibles in first entrance
     ui->lineselect->setVisible(false);
@@ -56,13 +77,16 @@ void take(QString element){
     if(element.contains("https")){
         //qDebug() <<element;
         htmlGet({element.remove(4)}, [](const QString &body){
-            QString arra [1];
+            //QString arra [1];
             List <QString> line;
             QRegExp rx("https");// match a comma or a space
             QStringList list = body.split(rx, QString::SkipEmptyParts);
-            arra[0] = "https" + list.takeAt(14).left(list.takeAt(14).lastIndexOf('@'))+ "@._V1_.jpg";
-            qDebug() << arra[0];
+            //arra[0] = "https" + list.takeAt(14).left(list.takeAt(14).lastIndexOf('@'))+ "@._V1_.jpg";
+            line.add_end("https" + list.takeAt(13).left(114));
+            qDebug()<< line.getbyposicion(0);
+            //qDebug() << arra[0];
             //return arra[0];
+            //list.takeAt(13).lastIndexOf('@')
        });
         qDebug() << "A";
     }
@@ -71,11 +95,14 @@ void take(QString element){
             //qDebug() << element.remove(4);
             htmlGet({element.remove(4)}, [](const QString &body){
                 List <QString> line;
-                QString arra [1];
+                //QString arra [1];
                 QRegExp rx("https");// match a comma or a space
                 QStringList list = body.split(rx, QString::SkipEmptyParts);
-                arra[0] = "https" + list.takeAt(14).left(list.takeAt(14).lastIndexOf('@'))+ "@._V1_.jpg";
-                qDebug() << arra[0];
+                //arra[0] = "https" + list.takeAt(13).left(list.takeAt(13).lastIndexOf('@'))+ "@._V1_.jpg";
+                line.add_end("https" + list.takeAt(13).left(114));
+                line.getbyposicion(0);
+                qDebug()<< line.getbyposicion(0);
+                //qDebug() << arra[0];
                 //return arra[0];
            });
         }
@@ -84,19 +111,20 @@ void take(QString element){
 }
 
 void MainWindow::Displaying(int getpage){
-    QString *reciever;  //This pointer is assign in order to receive teh data from the csv
+
+    QString reciever;  //This pointer is assign in order to receive teh data from the csv
 
     //Giving the previous page
     List <QString> previous_page;
-    QString *elementp;
+    QString elementp;
 
     //Giving the current page
     List <QString> current_page;
-    QString *elementc;
+    QString elementc;
 
     //Giving the next page
     List <QString> next_page;
-    QString *elementn;
+    QString elementn;
 
     //This variables are in order to give the current, previous and  next position
     //Those are going to store the pages
@@ -125,35 +153,35 @@ void MainWindow::Displaying(int getpage){
 
         //Storing the previous page
         elementp = GetPage(ui->lineselect->text(),past);
-        previous_page.add_end(*elementp);
+        previous_page.add_end(elementp);
         qDebug() << previous_page.getbyposicion(index);
 
         //Storing the current page
         elementc = GetPage(ui->lineselect->text(),slicer);
-        current_page.add_end(*elementc);
+        current_page.add_end(elementc);
         qDebug() << current_page.getbyposicion(index);
 
         //Storing the next page
         elementn= GetPage(ui->lineselect->text(),follow);
-        next_page.add_end(*elementn);
+        next_page.add_end(elementn);
         qDebug() << next_page.getbyposicion(index);
 
         //Get the url storing on the given csv file
         reciever = Search(ui->lineselect->text(), slicer);
-        options[index]->setText(*(reciever));
+        options[index]->setText((reciever));
 
-        take(*(reciever));
+        take((reciever));
         //qDebug() << *(reciever);
         slicer++;
         past++;
         follow++;
         index++;
-    }
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
-    QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_.jpg"));
+    QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BNjk4OTczOTk0NF5BMl5BanBnXkFtZTcwNjQ0NzMzMw@@._V1_UY1200_CR90,0,630,1200_AL_.jpg"));
     QNetworkReply *reply = netAccManager->get(request);
     QEventLoop loop;
     QObject::connect(reply,SIGNAL(finished()),&loop,SLOT(quit()));
@@ -175,8 +203,8 @@ void MainWindow::Displaying(int getpage){
 }
 
 //Method to give the first page, with the 9 posters on it
-void MainWindow::on_btn1_clicked()
-{
+void MainWindow::on_btn1_clicked(){
+
     //Catch the number from the button to give the page
     QString thispage = ui->btn1->text();
     int sendpage = thispage.toInt();  //Convertion from QString to int
@@ -185,8 +213,7 @@ void MainWindow::on_btn1_clicked()
 
 
 //Method to give the second page, with the 9 posters on it
-void MainWindow::on_btn2_clicked()
-{
+void MainWindow::on_btn2_clicked(){
     //Catch the number from the button to give the page
     QString thispage = ui->btn2->text();
     int sendpage = thispage.toInt();  //Convertion from QString to int
@@ -208,8 +235,7 @@ void MainWindow::on_btn2_clicked()
 
 
 //Method to give the third page, with the 9 posters on it
-void MainWindow::on_btn3_clicked()
-{
+void MainWindow::on_btn3_clicked(){
     //Catch the number from the button to give the page
     QString thispage = ui->btn3->text();
     int sendpage = thispage.toInt();  //Convertion from QString to int
@@ -218,8 +244,7 @@ void MainWindow::on_btn3_clicked()
 
 
 //Method to give the fourth page, with the 9 posters on it
-void MainWindow::on_btn4_clicked()
-{
+void MainWindow::on_btn4_clicked(){
     //Catch the number from the button to give the page
     QString thispage = ui->btn4->text();
     int sendpage = thispage.toInt();  //Convertion from QString to int
@@ -227,8 +252,7 @@ void MainWindow::on_btn4_clicked()
 }
 
 //Method to give the fifth page, with the 9 posters on it
-void MainWindow::on_btn5_clicked()
-{
+void MainWindow::on_btn5_clicked(){
     //Catch the number from the button to give the page
     QString thispage = ui->btn5->text();
     int sendpage = thispage.toInt();  //Convertion from QString to int
@@ -237,8 +261,7 @@ void MainWindow::on_btn5_clicked()
 
 
 //Button to the next page
-void MainWindow::on_btnnext_clicked()
-{
+void MainWindow::on_btnnext_clicked(){
     int first; //First variable takes the number from the first button
     int last;  //Last variable takes the number from the last button
     QString textf = ui->btn1->text();  //Getting the value
@@ -261,8 +284,7 @@ void MainWindow::on_btnnext_clicked()
 }
 
 //Method to return to next page, from the last position
-void MainWindow::on_btnprev_clicked()
-{
+void MainWindow::on_btnprev_clicked(){
     int first; //First variable takes the number from the first button
     int last;  //Last variable takes the number from the last button
     QString textf = ui->btn1->text();  //Getting the value
@@ -289,8 +311,7 @@ void MainWindow::on_btnprev_clicked()
 
 
 //This method gives the previous five options (numbers) from the first position
-void MainWindow::on_btnnext_2_clicked()
-{
+void MainWindow::on_btnnext_2_clicked(){
     int last;  //Last variable takes the number from the last button
     QString textl = ui->btn5->text();  //Getting the value
     last = textl.toInt();   //Convertion to int
@@ -310,8 +331,7 @@ void MainWindow::on_btnnext_2_clicked()
 }
 
 //This method gives the next five options (numbers) from the last position
-void MainWindow::on_btnprev_2_clicked()
-{
+void MainWindow::on_btnprev_2_clicked(){
     int first; //First variable takes the number from the first button
     QString textf = ui->btn1->text();  //Getting the value
     first = textf.toInt();  //Convertion to int
@@ -337,8 +357,7 @@ void MainWindow::on_btnprev_2_clicked()
 
 
 //Method to let the scroll
-void MainWindow::wheelEvent(QWheelEvent *event)
-{
+void MainWindow::wheelEvent(QWheelEvent *event){
     int numDegrees = event->delta() / 8;
     int numSteps = numDegrees / 15;
     //qDebug() << numSteps;
@@ -384,8 +403,7 @@ void MainWindow::on_btnupload_clicked()
 }
 
 //Pressing the file button in order to upload the csv to the program
-void MainWindow::on_btnfile_clicked()
-{
+void MainWindow::on_btnfile_clicked(){
     //Just make the elemts visbles in order to upload the file
     ui->lineselect->setVisible(true);
     ui->btnselect->setVisible(true);
