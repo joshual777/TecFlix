@@ -47,6 +47,9 @@ private slots:
     void Mouse_Pressed();
     void Displaying(int getpage);
 
+public slots:
+    void SetImages(QString images);
+
 private:
     Ui::MainWindow *ui;
     QString m_fileName;

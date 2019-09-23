@@ -32,25 +32,25 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //Check if there is internet aviable
-    QNetworkAccessManager nam;
-    QNetworkRequest req(QUrl("https://www.imdb.com"));
-    QNetworkReply* reply = nam.get(req);
-    QEventLoop loop;
-    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    loop.exec();
-    //If there is internet the program can be execute
-    if (reply->bytesAvailable()){
-        QMessageBox::information(this, "Info", "You are connected to the internet :)");
-    }
-    //If threre is not internet the program will close
-    else{
-        QMessageBox::critical(this, "Info", "You are not connected to the internet :(");
-        ui->lineselect->setVisible(false);
-        ui->btnselect->setVisible(false);
-        ui->btnupload->setVisible(false);
-        ui->label_10->setVisible(false);
-    }
+//    //Check if there is internet aviable
+//    QNetworkAccessManager nam;
+//    QNetworkRequest req(QUrl("https://www.imdb.com"));
+//    QNetworkReply* reply = nam.get(req);
+//    QEventLoop loop;
+//    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+//    loop.exec();
+//    //If there is internet the program can be execute
+//    if (reply->bytesAvailable()){
+//        QMessageBox::information(this, "Info", "You are connected to the internet :)");
+//    }
+//    //If threre is not internet the program will close
+//    else{
+//        QMessageBox::critical(this, "Info", "You are not connected to the internet :(");
+//        ui->lineselect->setVisible(false);
+//        ui->btnselect->setVisible(false);
+//        ui->btnupload->setVisible(false);
+//        ui->label_10->setVisible(false);
+//    }
 
     //Making thos elements invisibles in first entrance
     ui->lineselect->setVisible(false);
@@ -77,6 +77,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::SetImages(QString images){
+    qDebug() << images + "JOSHUA";
+}
+
+
+void RecpetorURL(QString links){
+    List <QString> Urls;
+    MainWindow SET;
+    Urls.add_end(links);
+    for (int i = 0; i<=Urls.size(); i++){
+        Urls.getbyposicion(i);
+        SET.SetImages(Urls.getbyposicion(i));
+    }
+
+}
 void take(QString element){
 
     if(element.contains("https")){
@@ -84,11 +99,15 @@ void take(QString element){
         htmlGet({element.remove(4)}, [](const QString &body){
             //QString arra [1];
             List <QString> line;
+            QString sender;
             QRegExp rx("https");// match a comma or a space
             QStringList list = body.split(rx, QString::SkipEmptyParts);
             //arra[0] = "https" + list.takeAt(14).left(list.takeAt(14).lastIndexOf('@'))+ "@._V1_.jpg";
             line.add_end("https" + list.takeAt(13).left(114));
             qDebug()<< line.getbyposicion(0);
+            sender=line.getbyposicion(0);
+            RecpetorURL(sender);
+
             //qDebug() << arra[0];
             //return arra[0];
             //list.takeAt(13).lastIndexOf('@')
@@ -100,6 +119,7 @@ void take(QString element){
             //qDebug() << element.remove(4);
             htmlGet({element.remove(4)}, [](const QString &body){
                 List <QString> line;
+                QString sender;
                 //QString arra [1];
                 QRegExp rx("https");// match a comma or a space
                 QStringList list = body.split(rx, QString::SkipEmptyParts);
@@ -107,6 +127,9 @@ void take(QString element){
                 line.add_end("https" + list.takeAt(13).left(114));
                 line.getbyposicion(0);
                 qDebug()<< line.getbyposicion(0);
+                sender=line.getbyposicion(0);
+                RecpetorURL(sender);
+
                 //qDebug() << arra[0];
                 //return arra[0];
            });
