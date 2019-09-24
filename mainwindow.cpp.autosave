@@ -135,9 +135,7 @@ void take(QString element){
             QTextStream textStream(&Files);
             textStream << sender;
             Files.close();
-
-
-//            RecpetorURL(sender);
+            
             SET.SetImages(sender);
        });
         qDebug() << "A";

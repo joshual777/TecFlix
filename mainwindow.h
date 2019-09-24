@@ -46,6 +46,7 @@ private slots:
     void readyRead();
     void Mouse_Pressed();
     void Displaying(int getpage);
+    void managerFinished(QNetworkReply *reply);
 
 public slots:
     void SetImages(QString images);
@@ -57,6 +58,10 @@ private:
     // If you create a file object on the stack, the program will crash.
     QFile *m_file;
     QNetworkAcessManager *mManager;
+
+
+      QNetworkAccessManager *manager;
+        QNetworkRequest request;
 };
 
 #endif // MAINWINDOW_H
