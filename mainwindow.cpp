@@ -55,40 +55,252 @@ MainWindow::MainWindow(QWidget *parent) :
     //Making thos elements invisibles in first entrance
     ui->lineselect->setVisible(false);
     ui->btnselect->setVisible(false);
-    ui->btnupload->setVisible(false);
-
-//    QPixmap pix("/home/joshua/Documentos/movie.jpg");
-//    int w = ui->lposter->width();
-//    int h = ui->lposter->height();
-//    ui->lposter->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
 
 
     //Creating the slot for the labels, it will has the function to display the images and videos in a new window
     connect(ui->lmovie1, SIGNAL(Mouse_Pressed()),this, SLOT(Mouse_Pressed()));
 
+
+    //Managers in order to take the url image from the html give by the link in the csv and display the image on each label
+
+    //MOVIE 1
     manager = new QNetworkAccessManager();
         QObject::connect(manager, &QNetworkAccessManager::finished,
             this, [=](QNetworkReply *reply) {
-                if (reply->error()) {
-                    qDebug() << reply->errorString();
-                    return;
-                }
                 List<QString> line;
                 QString answer = reply->readAll();
                 QRegExp rx("https");// match a comma or a space
                 QStringList list = answer.split(rx, QString::SkipEmptyParts);
                 line.add_end("https" + list.takeAt(13).left(114));
                 qDebug()<< line.getbyposicion(0);
-                QString a = ui->lmovie1->text();
 
-                //qDebug() << answer;
+                QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+                QNetworkRequest request(QUrl(line.getbyposicion(0)));
+                QNetworkReply *replyy = netAccManager->get(request);
+                QEventLoop loop;
+                QObject::connect(replyy,SIGNAL(finished()),&loop,SLOT(quit()));
+                loop.exec();
+                QByteArray bytes = replyy->readAll();
+                QImage img(20, 20, QImage::Format_Indexed8);
+                img.loadFromData(bytes);
+                int w = ui->lmovie1->width();
+                int h = ui->lmovie1->height();
+                ui->lmovie1->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
             }
         );
 
+        //MOVIE 2
+        manager2 = new QNetworkAccessManager();
+            QObject::connect(manager2, &QNetworkAccessManager::finished,
+                this, [=](QNetworkReply *reply) {
+                    List<QString> line;
+                    QString answer = reply->readAll();
+                    QRegExp rx("https");// match a comma or a space
+                    QStringList list = answer.split(rx, QString::SkipEmptyParts);
+                    line.add_end("https" + list.takeAt(13).left(114));
+                    qDebug()<< line.getbyposicion(0);
+
+                    QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+                    QNetworkRequest request(QUrl(line.getbyposicion(0)));
+                    QNetworkReply *replyy = netAccManager->get(request);
+                    QEventLoop loop;
+                    QObject::connect(replyy,SIGNAL(finished()),&loop,SLOT(quit()));
+                    loop.exec();
+                    QByteArray bytes = replyy->readAll();
+                    QImage img(20, 20, QImage::Format_Indexed8);
+                    img.loadFromData(bytes);
+                    int w = ui->lmovie1->width();
+                    int h = ui->lmovie1->height();
+                    ui->lmovie2->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                }
+            );
+
+            //MOVIE 3
+            manager3 = new QNetworkAccessManager();
+                QObject::connect(manager3, &QNetworkAccessManager::finished,
+                    this, [=](QNetworkReply *reply) {
+                        List<QString> line;
+                        QString answer = reply->readAll();
+                        QRegExp rx("https");// match a comma or a space
+                        QStringList list = answer.split(rx, QString::SkipEmptyParts);
+                        line.add_end("https" + list.takeAt(13).left(114));
+                        qDebug()<< line.getbyposicion(0);
+
+                        QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+                        QNetworkRequest request(QUrl(line.getbyposicion(0)));
+                        QNetworkReply *replyy = netAccManager->get(request);
+                        QEventLoop loop;
+                        QObject::connect(replyy,SIGNAL(finished()),&loop,SLOT(quit()));
+                        loop.exec();
+                        QByteArray bytes = replyy->readAll();
+                        QImage img(20, 20, QImage::Format_Indexed8);
+                        img.loadFromData(bytes);
+                        int w = ui->lmovie1->width();
+                        int h = ui->lmovie1->height();
+                        ui->lmovie3->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                    }
+                );
+
+                //MOVIE 4
+                manager4 = new QNetworkAccessManager();
+                    QObject::connect(manager4, &QNetworkAccessManager::finished,
+                        this, [=](QNetworkReply *reply) {
+                            List<QString> line;
+                            QString answer = reply->readAll();
+                            QRegExp rx("https");// match a comma or a space
+                            QStringList list = answer.split(rx, QString::SkipEmptyParts);
+                            line.add_end("https" + list.takeAt(13).left(114));
+                            qDebug()<< line.getbyposicion(0);
+
+                            QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+                            QNetworkRequest request(QUrl(line.getbyposicion(0)));
+                            QNetworkReply *replyy = netAccManager->get(request);
+                            QEventLoop loop;
+                            QObject::connect(replyy,SIGNAL(finished()),&loop,SLOT(quit()));
+                            loop.exec();
+                            QByteArray bytes = replyy->readAll();
+                            QImage img(20, 20, QImage::Format_Indexed8);
+                            img.loadFromData(bytes);
+                            int w = ui->lmovie1->width();
+                            int h = ui->lmovie1->height();
+                            ui->lmovie4->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                        }
+                    );
+
+                    //MOVIE 5
+                    manager5 = new QNetworkAccessManager();
+                        QObject::connect(manager5, &QNetworkAccessManager::finished,
+                            this, [=](QNetworkReply *reply) {
+                                List<QString> line;
+                                QString answer = reply->readAll();
+                                QRegExp rx("https");// match a comma or a space
+                                QStringList list = answer.split(rx, QString::SkipEmptyParts);
+                                line.add_end("https" + list.takeAt(13).left(114));
+                                qDebug()<< line.getbyposicion(0);
+
+                                QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+                                QNetworkRequest request(QUrl(line.getbyposicion(0)));
+                                QNetworkReply *replyy = netAccManager->get(request);
+                                QEventLoop loop;
+                                QObject::connect(replyy,SIGNAL(finished()),&loop,SLOT(quit()));
+                                loop.exec();
+                                QByteArray bytes = replyy->readAll();
+                                QImage img(20, 20, QImage::Format_Indexed8);
+                                img.loadFromData(bytes);
+                                int w = ui->lmovie1->width();
+                                int h = ui->lmovie1->height();
+                                ui->lmovie5->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                            }
+                        );
+
+                        //MOVIE 6
+                        manager6 = new QNetworkAccessManager();
+                            QObject::connect(manager6, &QNetworkAccessManager::finished,
+                                this, [=](QNetworkReply *reply) {
+                                    List<QString> line;
+                                    QString answer = reply->readAll();
+                                    QRegExp rx("https");// match a comma or a space
+                                    QStringList list = answer.split(rx, QString::SkipEmptyParts);
+                                    line.add_end("https" + list.takeAt(13).left(114));
+                                    qDebug()<< line.getbyposicion(0);
+
+                                    QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+                                    QNetworkRequest request(QUrl(line.getbyposicion(0)));
+                                    QNetworkReply *replyy = netAccManager->get(request);
+                                    QEventLoop loop;
+                                    QObject::connect(replyy,SIGNAL(finished()),&loop,SLOT(quit()));
+                                    loop.exec();
+                                    QByteArray bytes = replyy->readAll();
+                                    QImage img(20, 20, QImage::Format_Indexed8);
+                                    img.loadFromData(bytes);
+                                    int w = ui->lmovie1->width();
+                                    int h = ui->lmovie1->height();
+                                    ui->lmovie6->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                                }
+                            );
+
+                            //MOVIE 7
+                            manager7 = new QNetworkAccessManager();
+                                QObject::connect(manager7, &QNetworkAccessManager::finished,
+                                    this, [=](QNetworkReply *reply) {
+                                        List<QString> line;
+                                        QString answer = reply->readAll();
+                                        QRegExp rx("https");// match a comma or a space
+                                        QStringList list = answer.split(rx, QString::SkipEmptyParts);
+                                        line.add_end("https" + list.takeAt(13).left(114));
+                                        qDebug()<< line.getbyposicion(0);
+
+                                        QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+                                        QNetworkRequest request(QUrl(line.getbyposicion(0)));
+                                        QNetworkReply *replyy = netAccManager->get(request);
+                                        QEventLoop loop;
+                                        QObject::connect(replyy,SIGNAL(finished()),&loop,SLOT(quit()));
+                                        loop.exec();
+                                        QByteArray bytes = replyy->readAll();
+                                        QImage img(20, 20, QImage::Format_Indexed8);
+                                        img.loadFromData(bytes);
+                                        int w = ui->lmovie1->width();
+                                        int h = ui->lmovie1->height();
+                                        ui->lmovie7->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                                    }
+                                );
+
+
+                                //MOVIE 8
+                                manager8 = new QNetworkAccessManager();
+                                    QObject::connect(manager8, &QNetworkAccessManager::finished,
+                                        this, [=](QNetworkReply *reply) {
+                                            List<QString> line;
+                                            QString answer = reply->readAll();
+                                            QRegExp rx("https");// match a comma or a space
+                                            QStringList list = answer.split(rx, QString::SkipEmptyParts);
+                                            line.add_end("https" + list.takeAt(13).left(114));
+                                            qDebug()<< line.getbyposicion(0);
+
+                                            QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+                                            QNetworkRequest request(QUrl(line.getbyposicion(0)));
+                                            QNetworkReply *replyy = netAccManager->get(request);
+                                            QEventLoop loop;
+                                            QObject::connect(replyy,SIGNAL(finished()),&loop,SLOT(quit()));
+                                            loop.exec();
+                                            QByteArray bytes = replyy->readAll();
+                                            QImage img(20, 20, QImage::Format_Indexed8);
+                                            img.loadFromData(bytes);
+                                            int w = ui->lmovie1->width();
+                                            int h = ui->lmovie1->height();
+                                            ui->lmovie8->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                                        }
+                                    );
+
+                                    //MOVIE 9
+                                    manager9 = new QNetworkAccessManager();
+                                        QObject::connect(manager9, &QNetworkAccessManager::finished,
+                                            this, [=](QNetworkReply *reply) {
+                                                List<QString> line;
+                                                QString answer = reply->readAll();
+                                                QRegExp rx("https");// match a comma or a space
+                                                QStringList list = answer.split(rx, QString::SkipEmptyParts);
+                                                line.add_end("https" + list.takeAt(13).left(114));
+                                                qDebug()<< line.getbyposicion(0);
+
+                                                QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+                                                QNetworkRequest request(QUrl(line.getbyposicion(0)));
+                                                QNetworkReply *replyy = netAccManager->get(request);
+                                                QEventLoop loop;
+                                                QObject::connect(replyy,SIGNAL(finished()),&loop,SLOT(quit()));
+                                                loop.exec();
+                                                QByteArray bytes = replyy->readAll();
+                                                QImage img(20, 20, QImage::Format_Indexed8);
+                                                img.loadFromData(bytes);
+                                                int w = ui->lmovie1->width();
+                                                int h = ui->lmovie1->height();
+                                                ui->lmovie9->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                                            }
+                                        );
 }
 
-//Variables to take pages
 
+//Variables to take pages
 int static current, previous, nextt;
 
 MainWindow::~MainWindow()
@@ -97,8 +309,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::SetImages(QString images){
-
-    int cpunter;
     List <QString> imageslist;
     //QLabel pointer array to diplay the titles inside them
     QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
@@ -130,14 +340,7 @@ void take(QString element){
             //qDebug()<< line.getbyposicion(0);
             sender=line.getbyposicion(0);
 
-            QFile Files("/home/joshua/Documentos/TecFlix/build-TecFlix-Desktop_Qt_5_11_2_GCC_64bit-Debug/file.txt");
-            Files.open(QIODevice::WriteOnly | QIODevice::Text);
-            QTextStream textStream(&Files);
-            textStream << sender;
-            Files.close();
 
-
-//            RecpetorURL(sender);
             SET.SetImages(sender);
        });
         qDebug() << "A";
@@ -157,13 +360,7 @@ void take(QString element){
                 //qDebug()<< line.getbyposicion(0);
                 sender=line.getbyposicion(0);
 
-                QFile Files("/home/joshua/Documentos/TecFlix/build-TecFlix-Desktop_Qt_5_11_2_GCC_64bit-Debug/file.txt");
-                Files.open(QIODevice::WriteOnly | QIODevice::Text);
-                QTextStream textStream(&Files);
-                textStream << sender;
-                Files.close();
 
-                //RecpetorURL(sender);
                  SET.SetImages(sender);
            });
         }
@@ -174,6 +371,12 @@ void take(QString element){
 void MainWindow::Displaying(int getpage){
 
     QString reciever;  //This pointer is assign in order to receive teh data from the csv
+
+
+    List <QString> images;
+
+    QString filename = "file";
+    QString ending = "txt";
 
     //Giving the previous page
     List <QString> previous_page;
@@ -231,29 +434,52 @@ void MainWindow::Displaying(int getpage){
         reciever = Search(ui->lineselect->text(), slicer);
         options[index]->setText((reciever));
 
-        take(reciever);
-        //qDebug() << *(reciever);
+        //take(reciever);
+
+        images.add_end(reciever);
+
         slicer++;
         past++;
         follow++;
         index++;
-}
+   }
 
+    qDebug() << images.size();
+
+
+    request.setUrl(QUrl(images.getbyposicion(0)));
+    manager->get(request);
+
+    request2.setUrl(QUrl(images.getbyposicion(1)));
+    manager2->get(request2);
+
+    request3.setUrl(QUrl(images.getbyposicion(2)));
+    manager3->get(request3);
+
+    request4.setUrl(QUrl(images.getbyposicion(3)));
+    manager4->get(request4);
+
+    request5.setUrl(QUrl(images.getbyposicion(4)));
+    manager5->get(request5);
+
+    request6.setUrl(QUrl(images.getbyposicion(5)));
+    manager6->get(request6);
+
+    request7.setUrl(QUrl(images.getbyposicion(6)));
+    manager7->get(request7);
+
+    request8.setUrl(QUrl(images.getbyposicion(7)));
+    manager8->get(request8);
+
+    request9.setUrl(QUrl(images.getbyposicion(8)));
+    manager9->get(request9);
+
+
+//        qDebug() << images.size();
+//        qDebug() << images.getbyposicion(1);
+//        qDebug() << images.getbyposicion(7);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
-    QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BNjk4OTczOTk0NF5BMl5BanBnXkFtZTcwNjQ0NzMzMw@@._V1_UY1200_CR90,0,630,1200_AL_.jpg"));
-    QNetworkReply *reply = netAccManager->get(request);
-    QEventLoop loop;
-    QObject::connect(reply,SIGNAL(finished()),&loop,SLOT(quit()));
-    loop.exec();
-    QByteArray bytes = reply->readAll();
-    QImage img(20, 20, QImage::Format_Indexed8);
-    img.loadFromData(bytes);
-    int w = ui->lmovie1->width();
-    int h = ui->lmovie1->height();
-    ui->lmovie1->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
-
 
     //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
 
@@ -279,19 +505,6 @@ void MainWindow::on_btn2_clicked(){
     QString thispage = ui->btn2->text();
     int sendpage = thispage.toInt();  //Convertion from QString to int
     Displaying(sendpage);  //The page will send to the Displaying method
-
-    QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
-    QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BMTU2NTYxODcwMF5BMl5BanBnXkFtZTcwNDk1NDY0Nw@@._V1_.jpg"));
-    QNetworkReply *reply = netAccManager->get(request);
-    QEventLoop loop;
-    QObject::connect(reply,SIGNAL(finished()),&loop,SLOT(quit()));
-    loop.exec();
-    QByteArray bytes = reply->readAll();
-    QImage img(20, 20, QImage::Format_Indexed8);
-    img.loadFromData(bytes);
-    int w = ui->lmovie1->width();
-    int h = ui->lmovie1->height();
-    ui->lmovie2->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
 }
 
 
@@ -458,17 +671,11 @@ void MainWindow::on_btnselect_clicked(){
     chargefile(m_fileName);     //The function "chargefile" from the page class will open and read the whole file
 }
 
-
-void MainWindow::on_btnupload_clicked(){
-
-}
-
 //Pressing the file button in order to upload the csv to the program
 void MainWindow::on_btnfile_clicked(){
     //Just make the elemts visbles in order to upload the file
     ui->lineselect->setVisible(true);
     ui->btnselect->setVisible(true);
-    ui->btnupload->setVisible(true);
 }
 
 void MainWindow::Mouse_Pressed(){

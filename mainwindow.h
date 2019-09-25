@@ -41,7 +41,6 @@ private slots:
     void wheelEvent(QWheelEvent *event);
     int Page(int parameter);
     void on_btnselect_clicked();
-    void on_btnupload_clicked();
     void on_btnfile_clicked();
     void readyRead();
     void Mouse_Pressed();
@@ -59,9 +58,41 @@ private:
     QFile *m_file;
     QNetworkAcessManager *mManager;
 
+    //To display movie 1
+   QNetworkAccessManager *manager;
+   QNetworkRequest request;
 
-      QNetworkAccessManager *manager;
-        QNetworkRequest request;
+   //To display movie 2
+   QNetworkAccessManager *manager2;
+   QNetworkRequest request2;
+
+   //To display movie 3
+   QNetworkAccessManager *manager3;
+   QNetworkRequest request3;
+
+   //To display movie 4
+   QNetworkAccessManager *manager4;
+   QNetworkRequest request4;
+
+   //To display movie 5
+   QNetworkAccessManager *manager5;
+   QNetworkRequest request5;
+
+   //To display movie 6
+   QNetworkAccessManager *manager6;
+   QNetworkRequest request6;
+
+   //To display movie 7
+   QNetworkAccessManager *manager7;
+   QNetworkRequest request7;
+
+   //To display movie 8
+   QNetworkAccessManager *manager8;
+   QNetworkRequest request8;
+
+   //To display movie 9
+   QNetworkAccessManager *manager9;
+   QNetworkRequest request9;
 };
 
 #endif // MAINWINDOW_H
