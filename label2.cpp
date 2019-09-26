@@ -1,11 +1,11 @@
-#include "label.h"
+#include "label2.h"
 #include <QLabel>
 
 //                                        LABEL CLASS
 // The purpose of this class is to make the label clickable to open  new window
 
 
-Label::Label(QWidget *parent) :
+Label2::Label2(QWidget *parent) :
     QLabel(parent)
 {
 
@@ -15,8 +15,8 @@ Label::Label(QWidget *parent) :
 
 
 //The purpose of this method is to give the sign when a label was pressed
-void Label::mousePressEvent(QMouseEvent *ev){
-    emit Mouse_Pressed();
+void Label2::mousePressEvent(QMouseEvent *eve){
+    emit Mouse_Pressed2();
 }
 
 

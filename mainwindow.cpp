@@ -16,10 +16,6 @@
 
 #include "list.h"
 
-
-#include "html.h"
-#include "html.cpp"
-
 #include <page.h>
 #include <page.cpp>
 
@@ -27,10 +23,12 @@
 #include <viewer.h>
 
 MainWindow::MainWindow(QWidget *parent) :
+
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("TECFLIX");
 
 //    //Check if there is internet aviable
 //    QNetworkAccessManager nam;
@@ -57,10 +55,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->btnselect->setVisible(false);
 
 
-    //Creating the slot for the labels, it will has the function to display the images and videos in a new window
-    connect(ui->lmovie1, SIGNAL(Mouse_Pressed()),this, SLOT(Mouse_Pressed()));
-
-
     //Managers in order to take the url image from the html give by the link in the csv and display the image on each label
 
     //MOVIE 1
@@ -83,9 +77,11 @@ MainWindow::MainWindow(QWidget *parent) :
                 QByteArray bytes = replyy->readAll();
                 QImage img(20, 20, QImage::Format_Indexed8);
                 img.loadFromData(bytes);
-                int w = ui->lmovie1->width();
-                int h = ui->lmovie1->height();
-                ui->lmovie1->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                int w = ui->bmovie1->width();
+                int h = ui->bmovie1->height();
+                ui->bmovie1->setIcon(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+
+
             }
         );
 
@@ -109,9 +105,9 @@ MainWindow::MainWindow(QWidget *parent) :
                     QByteArray bytes = replyy->readAll();
                     QImage img(20, 20, QImage::Format_Indexed8);
                     img.loadFromData(bytes);
-                    int w = ui->lmovie1->width();
-                    int h = ui->lmovie1->height();
-                    ui->lmovie2->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                    int w = ui->bmovie2->width();
+                    int h = ui->bmovie2->height();
+                    ui->bmovie2->setIcon(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
                 }
             );
 
@@ -135,9 +131,9 @@ MainWindow::MainWindow(QWidget *parent) :
                         QByteArray bytes = replyy->readAll();
                         QImage img(20, 20, QImage::Format_Indexed8);
                         img.loadFromData(bytes);
-                        int w = ui->lmovie1->width();
-                        int h = ui->lmovie1->height();
-                        ui->lmovie3->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                        int w = ui->bmovie3->width();
+                        int h = ui->bmovie3->height();
+                        ui->bmovie3->setIcon(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
                     }
                 );
 
@@ -161,9 +157,9 @@ MainWindow::MainWindow(QWidget *parent) :
                             QByteArray bytes = replyy->readAll();
                             QImage img(20, 20, QImage::Format_Indexed8);
                             img.loadFromData(bytes);
-                            int w = ui->lmovie1->width();
-                            int h = ui->lmovie1->height();
-                            ui->lmovie4->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                            int w = ui->bmovie4->width();
+                            int h = ui->bmovie4->height();
+                            ui->bmovie4->setIcon(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
                         }
                     );
 
@@ -187,9 +183,9 @@ MainWindow::MainWindow(QWidget *parent) :
                                 QByteArray bytes = replyy->readAll();
                                 QImage img(20, 20, QImage::Format_Indexed8);
                                 img.loadFromData(bytes);
-                                int w = ui->lmovie1->width();
-                                int h = ui->lmovie1->height();
-                                ui->lmovie5->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                                int w = ui->bmovie5->width();
+                                int h = ui->bmovie5->height();
+                                ui->bmovie5->setIcon(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
                             }
                         );
 
@@ -213,9 +209,9 @@ MainWindow::MainWindow(QWidget *parent) :
                                     QByteArray bytes = replyy->readAll();
                                     QImage img(20, 20, QImage::Format_Indexed8);
                                     img.loadFromData(bytes);
-                                    int w = ui->lmovie1->width();
-                                    int h = ui->lmovie1->height();
-                                    ui->lmovie6->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                                    int w = ui->bmovie6->width();
+                                    int h = ui->bmovie6->height();
+                                    ui->bmovie6->setIcon(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
                                 }
                             );
 
@@ -239,9 +235,9 @@ MainWindow::MainWindow(QWidget *parent) :
                                         QByteArray bytes = replyy->readAll();
                                         QImage img(20, 20, QImage::Format_Indexed8);
                                         img.loadFromData(bytes);
-                                        int w = ui->lmovie1->width();
-                                        int h = ui->lmovie1->height();
-                                        ui->lmovie7->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                                        int w = ui->bmovie7->width();
+                                        int h = ui->bmovie7->height();
+                                        ui->bmovie7->setIcon(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
                                     }
                                 );
 
@@ -266,9 +262,9 @@ MainWindow::MainWindow(QWidget *parent) :
                                             QByteArray bytes = replyy->readAll();
                                             QImage img(20, 20, QImage::Format_Indexed8);
                                             img.loadFromData(bytes);
-                                            int w = ui->lmovie1->width();
-                                            int h = ui->lmovie1->height();
-                                            ui->lmovie8->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                                            int w = ui->bmovie8->width();
+                                            int h = ui->bmovie8->height();
+                                            ui->bmovie8->setIcon(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
                                         }
                                     );
 
@@ -292,9 +288,9 @@ MainWindow::MainWindow(QWidget *parent) :
                                                 QByteArray bytes = replyy->readAll();
                                                 QImage img(20, 20, QImage::Format_Indexed8);
                                                 img.loadFromData(bytes);
-                                                int w = ui->lmovie1->width();
-                                                int h = ui->lmovie1->height();
-                                                ui->lmovie9->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
+                                                int w = ui->bmovie9->width();
+                                                int h = ui->bmovie9->height();
+                                                ui->bmovie9->setIcon(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
                                             }
                                         );
 }
@@ -308,72 +304,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::SetImages(QString images){
-    List <QString> imageslist;
-    //QLabel pointer array to diplay the titles inside them
-    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
-                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
-
-    QFile Files("/home/joshua/Documentos/TecFlix/build-TecFlix-Desktop_Qt_5_11_2_GCC_64bit-Debug/file.txt");
-    Files.open(QIODevice::WriteOnly | QIODevice::Text);
-    QTextStream textStream(&Files);
-    textStream << images;
-    Files.close();
-
-    imageslist.add_end(images);
-    this->ui->lmovie1->setVisible(false);
-    qDebug() << images;
-    //qDebug() << imageslist.size();
-  this-> ui->lmovie9->setText(imageslist.getbyposicion(0));
-}
-
-void take(QString element){
-    if(element.contains("https")){
-        //qDebug() <<element;
-        htmlGet({element.remove(4)}, [](const QString &body){
-            List <QString> line;
-            MainWindow SET;
-            QString sender;
-            QRegExp rx("https");// match a comma or a space
-            QStringList list = body.split(rx, QString::SkipEmptyParts);
-            line.add_end("https" + list.takeAt(13).left(114));
-            //qDebug()<< line.getbyposicion(0);
-            sender=line.getbyposicion(0);
-
-
-            SET.SetImages(sender);
-       });
-        qDebug() << "A";
-    }
-    else{
-        if (element.insert( 4, "s" ).contains("https")){
-            //qDebug() << element.remove(4);
-            htmlGet({element.remove(4)}, [](const QString &body){
-                List <QString> line;
-                MainWindow SET;
-                QString sender;
-                //QString arra [1];
-                QRegExp rx("https");// match a comma or a space
-                QStringList list = body.split(rx, QString::SkipEmptyParts);
-                line.add_end("https" + list.takeAt(13).left(114));
-                line.getbyposicion(0);
-                //qDebug()<< line.getbyposicion(0);
-                sender=line.getbyposicion(0);
-
-
-                 SET.SetImages(sender);
-           });
-        }
-        qDebug() << "B";
-    }
-}
-
 void MainWindow::Displaying(int getpage){
 
     QString reciever;  //This pointer is assign in order to receive teh data from the csv
 
-
     List <QString> images;
+    List <QString> posima;
 
     QString filename = "file";
     QString ending = "txt";
@@ -395,10 +331,6 @@ void MainWindow::Displaying(int getpage){
     previous = getpage -1;
     current = getpage;
     nextt = getpage +1;
-
-    //QLabel pointer array to diplay the titles inside them
-    QLabel * options[9] = {ui->lmovie1, ui->lmovie2, ui->lmovie3, ui->lmovie4, ui->lmovie5, ui->lmovie6,
-                          ui->lmovie7, ui->lmovie8, ui->lmovie9};
 
     //Variables to count and extract the exact positions from one specific cell
     int pos = current;  //Take the current page
@@ -432,20 +364,18 @@ void MainWindow::Displaying(int getpage){
 
         //Get the url storing on the given csv file
         reciever = Search(ui->lineselect->text(), slicer);
-        options[index]->setText((reciever));
+        //options[index]->setText(GetPage(ui->lineselect->text(),slicer));
 
         //take(reciever);
 
         images.add_end(reciever);
+        posima.add_end(QString::number(slicer));
 
         slicer++;
         past++;
         follow++;
         index++;
    }
-
-    qDebug() << images.size();
-
 
     request.setUrl(QUrl(images.getbyposicion(0)));
     manager->get(request);
@@ -475,18 +405,25 @@ void MainWindow::Displaying(int getpage){
     manager9->get(request9);
 
 
-//        qDebug() << images.size();
-//        qDebug() << images.getbyposicion(1);
-//        qDebug() << images.getbyposicion(7);
-
+    //Storing in file index of position to pass to the new window
+    QFile file( "file.txt" );
+    if ( file.open(QIODevice::ReadWrite) )
+    {
+        QTextStream stream( &file );
+        int j = 0;
+        while(j < posima.size()){
+            stream << posima.getbyposicion(j) << endl;
+            j++;
+        }
+    }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //HERE IS WHERE THE CICLK MUST BE CREATED IN ORDER TO ACCESS THE MOVIE TITLE DATA
 
-    qDebug() << previous;
-    qDebug() << current;
-    qDebug() << nextt;
-    qDebug() << "first";
+//    qDebug() << previous;
+//    qDebug() << current;
+//    qDebug() << nextt;
+//    qDebug() << "first";
 }
 
 //Method to give the first page, with the 9 posters on it
@@ -501,6 +438,8 @@ void MainWindow::on_btn1_clicked(){
 
 //Method to give the second page, with the 9 posters on it
 void MainWindow::on_btn2_clicked(){
+    qDebug() << ui->bmovie1->width();
+    qDebug() << ui->bmovie1->height();
     //Catch the number from the button to give the page
     QString thispage = ui->btn2->text();
     int sendpage = thispage.toInt();  //Convertion from QString to int
@@ -629,7 +568,6 @@ void MainWindow::on_btnprev_2_clicked(){
         }
 }
 
-
 //Method to let the scroll
 void MainWindow::wheelEvent(QWheelEvent *event){
     int numDegrees = event->delta() / 8;
@@ -678,32 +616,67 @@ void MainWindow::on_btnfile_clicked(){
     ui->btnselect->setVisible(true);
 }
 
-void MainWindow::Mouse_Pressed(){
 
+void MainWindow::on_bmovie1_clicked()
+{
+    QFile file( "file.txt" );
     Viewer  Viewer;
     Viewer.setModal(true);
     Viewer.exec();
-    QString name = ui->lmovie4->text();
-    qDebug() << name;
-
-    request.setUrl(QUrl("https://www.imdb.com/title/tt1490017/?ref_=rvi_tt"));
-    manager->get(request);
-
-    QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
-    QNetworkRequest request(QUrl("https://m.media-amazon.com/images/M/MV5BMTU2NTYxODcwMF5BMl5BanBnXkFtZTcwNDk1NDY0Nw@@._V1_.jpg"));
-    QNetworkReply *reply = netAccManager->get(request);
-    QEventLoop loop;
-    QObject::connect(reply,SIGNAL(finished()),&loop,SLOT(quit()));
-    loop.exec();
-    QByteArray bytes = reply->readAll();
-    QImage img(20, 20, QImage::Format_Indexed8);
-    img.loadFromData(bytes);
-    int w = ui->lmovie1->width();
-    int h = ui->lmovie1->height();
-    ui->lmovie3->setPixmap(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
 }
 
+void MainWindow::on_bmovie2_clicked()
+{
+    Viewer  Viewer;
+    Viewer.setModal(true);
+    Viewer.exec();
+}
 
+void MainWindow::on_bmovie3_clicked()
+{
+    Viewer  Viewer;
+    Viewer.setModal(true);
+    Viewer.exec();
+}
 
+void MainWindow::on_bmovie4_clicked()
+{
+    Viewer  Viewer;
+    Viewer.setModal(true);
+    Viewer.exec();
+}
 
+void MainWindow::on_bmovie5_clicked()
+{
+    Viewer  Viewer;
+    Viewer.setModal(true);
+    Viewer.exec();
+}
 
+void MainWindow::on_bmovie6_clicked()
+{
+    Viewer  Viewer;
+    Viewer.setModal(true);
+    Viewer.exec();
+}
+
+void MainWindow::on_bmovie7_clicked()
+{
+    Viewer  Viewer;
+    Viewer.setModal(true);
+    Viewer.exec();
+}
+
+void MainWindow::on_bmovie8_clicked()
+{
+    Viewer  Viewer;
+    Viewer.setModal(true);
+    Viewer.exec();
+}
+
+void MainWindow::on_bmovie9_clicked()
+{
+    Viewer  Viewer;
+    Viewer.setModal(true);
+    Viewer.exec();
+}

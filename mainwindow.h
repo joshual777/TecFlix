@@ -24,6 +24,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
 void setName(const QString &name);
 
 
@@ -42,13 +43,27 @@ private slots:
     int Page(int parameter);
     void on_btnselect_clicked();
     void on_btnfile_clicked();
-    void readyRead();
-    void Mouse_Pressed();
+    //void readyRead();
     void Displaying(int getpage);
-    void managerFinished(QNetworkReply *reply);
+    //void managerFinished(QNetworkReply *reply);
 
-public slots:
-    void SetImages(QString images);
+    void on_bmovie1_clicked();
+
+    void on_bmovie2_clicked();
+
+    void on_bmovie3_clicked();
+
+    void on_bmovie4_clicked();
+
+    void on_bmovie5_clicked();
+
+    void on_bmovie6_clicked();
+
+    void on_bmovie7_clicked();
+
+    void on_bmovie8_clicked();
+
+    void on_bmovie9_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -31,7 +31,6 @@ SOURCES += \
     node.cpp \
     list.cpp \
     page.cpp \
-    label.cpp \
     viewer.cpp
 
 HEADERS += \
@@ -40,7 +39,6 @@ HEADERS += \
     node.h \
     list.h \
     page.h \
-    label.h \
     viewer.h
 
 FORMS += \

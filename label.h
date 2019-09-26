@@ -22,4 +22,6 @@ public slots:
 
 };
 
+
+
 #endif // LABEL_H

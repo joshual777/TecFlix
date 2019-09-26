@@ -12,7 +12,7 @@ class Viewer : public QDialog
     Q_OBJECT
 
 public:
-    explicit Viewer(QWidget *parent = nullptr);
+    explicit Viewer(QWidget *parent = nullptr );
     ~Viewer();
 
 private:
