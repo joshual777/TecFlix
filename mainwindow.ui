@@ -593,6 +593,399 @@
      </size>
     </property>
    </widget>
+   <widget class="QLabel" name="lback">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>76</y>
+      <width>531</width>
+      <height>611</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lmovieinfo">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>110</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>Movie Info</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lgenere">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>250</y>
+      <width>67</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>genere</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lduration">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>67</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>duration</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lactor1">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>360</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>actor1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lactor3">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>450</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>actor3</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lmoviedisplay">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>250</y>
+      <width>231</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: yellow;
+		border: 1px solid black;
+		color: black;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lactor2">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>410</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>actor2</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ldirector">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>310</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>Director</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ldirectorname">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>310</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>directro name</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ltitle">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>160</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>movie</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lcountry">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>220</y>
+      <width>67</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>country</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lcontent">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>220</y>
+      <width>67</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>content</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lyear">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>220</y>
+      <width>67</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>year</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lstars">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>360</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+		background-color: black;
+		border: 1px solid black;
+		color: yellow;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>Stars</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnback">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>650</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+		background-color: yellow;
+		border: 1px solid black;
+		color: black;
+		padding: 5px; 	
+}</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
    <zorder>lposter</zorder>
    <zorder>btn1</zorder>
    <zorder>btn2</zorder>
@@ -618,6 +1011,22 @@
    <zorder>bmovie7</zorder>
    <zorder>bmovie8</zorder>
    <zorder>bmovie9</zorder>
+   <zorder>lback</zorder>
+   <zorder>lmovieinfo</zorder>
+   <zorder>lgenere</zorder>
+   <zorder>lduration</zorder>
+   <zorder>lactor1</zorder>
+   <zorder>lactor3</zorder>
+   <zorder>lmoviedisplay</zorder>
+   <zorder>lactor2</zorder>
+   <zorder>ldirector</zorder>
+   <zorder>ldirectorname</zorder>
+   <zorder>ltitle</zorder>
+   <zorder>lcountry</zorder>
+   <zorder>lcontent</zorder>
+   <zorder>lyear</zorder>
+   <zorder>lstars</zorder>
+   <zorder>btnback</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

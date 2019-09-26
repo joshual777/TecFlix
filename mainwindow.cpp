@@ -55,6 +55,24 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->btnselect->setVisible(false);
 
 
+    //Info labels invisible
+    ui->btnback->setVisible(false);
+    ui->lback->setVisible(false);
+    ui->lstars->setVisible(false);
+    ui->ltitle->setVisible(false);
+    ui->lmoviedisplay->setVisible(false);
+    ui->lmovieinfo->setVisible(false);
+    ui->ldirector->setVisible(false);
+    ui->lcountry->setVisible(false);
+    ui->lgenere->setVisible(false);
+    ui->lduration->setVisible(false);
+    ui->lyear->setVisible(false);
+    ui->lcontent->setVisible(false);
+    ui->ldirectorname->setVisible(false);
+    ui->lactor1->setVisible(false);
+    ui->lactor2->setVisible(false);
+    ui->lactor3->setVisible(false);
+
     //Managers in order to take the url image from the html give by the link in the csv and display the image on each label
 
     //MOVIE 1
@@ -80,8 +98,6 @@ MainWindow::MainWindow(QWidget *parent) :
                 int w = ui->bmovie1->width();
                 int h = ui->bmovie1->height();
                 ui->bmovie1->setIcon(QPixmap::fromImage(img).scaled(w,h,Qt::KeepAspectRatio));
-
-
             }
         );
 
@@ -617,66 +633,85 @@ void MainWindow::on_btnfile_clicked(){
 }
 
 
-void MainWindow::on_bmovie1_clicked()
-{
+void MainWindow::on_bmovie1_clicked(){
+
     QFile file( "file.txt" );
-    Viewer  Viewer;
-    Viewer.setModal(true);
-    Viewer.exec();
+    if ( file.open(QIODevice::ReadWrite) )
+    {
+        QString m1 = file.readAll().mid(0,2);
+        qDebug() << m1;
+        //qDebug()<< m1.mid(0,2);
+    }
 }
 
-void MainWindow::on_bmovie2_clicked()
-{
-    Viewer  Viewer;
-    Viewer.setModal(true);
-    Viewer.exec();
+void MainWindow::on_bmovie2_clicked(){
+    QFile file( "file.txt" );
+    if ( file.open(QIODevice::ReadWrite) )
+    {
+        QString m1 = file.readAll().mid(3,5).left(2);
+        qDebug() << m1;
+    }
 }
 
-void MainWindow::on_bmovie3_clicked()
-{
-    Viewer  Viewer;
-    Viewer.setModal(true);
-    Viewer.exec();
+void MainWindow::on_bmovie3_clicked(){
+    QFile file( "file.txt" );
+    if ( file.open(QIODevice::ReadWrite) )
+    {
+        QString m1 = file.readAll().mid(6,8).left(2);
+        qDebug() << m1;
+    }
 }
 
-void MainWindow::on_bmovie4_clicked()
-{
-    Viewer  Viewer;
-    Viewer.setModal(true);
-    Viewer.exec();
+void MainWindow::on_bmovie4_clicked(){
+    QFile file( "file.txt" );
+    if ( file.open(QIODevice::ReadWrite) )
+    {
+        QString m1 = file.readAll().mid(9,11).left(2);
+        qDebug() << m1;
+    }
 }
 
-void MainWindow::on_bmovie5_clicked()
-{
-    Viewer  Viewer;
-    Viewer.setModal(true);
-    Viewer.exec();
+void MainWindow::on_bmovie5_clicked(){
+    QFile file( "file.txt" );
+    if ( file.open(QIODevice::ReadWrite) )
+    {
+        QString m1 = file.readAll().mid(12,14).left(2);
+        qDebug() << m1;
+    }
 }
 
-void MainWindow::on_bmovie6_clicked()
-{
-    Viewer  Viewer;
-    Viewer.setModal(true);
-    Viewer.exec();
+void MainWindow::on_bmovie6_clicked(){
+    QFile file( "file.txt" );
+    if ( file.open(QIODevice::ReadWrite) )
+    {
+       QString m1 = file.readAll().mid(15,17).left(2);
+        qDebug() << m1;
+    }
 }
 
-void MainWindow::on_bmovie7_clicked()
-{
-    Viewer  Viewer;
-    Viewer.setModal(true);
-    Viewer.exec();
+void MainWindow::on_bmovie7_clicked(){
+    QFile file( "file.txt" );
+    if ( file.open(QIODevice::ReadWrite) )
+    {
+        QString m1 = file.readAll().mid(18,20).left(2);
+        qDebug() << m1;
+    }
 }
 
-void MainWindow::on_bmovie8_clicked()
-{
-    Viewer  Viewer;
-    Viewer.setModal(true);
-    Viewer.exec();
+void MainWindow::on_bmovie8_clicked(){
+    QFile file( "file.txt" );
+    if ( file.open(QIODevice::ReadWrite) )
+    {
+        QString m1 = file.readAll().mid(21,23).left(2);
+        qDebug() << m1;
+    }
 }
 
-void MainWindow::on_bmovie9_clicked()
-{
-    Viewer  Viewer;
-    Viewer.setModal(true);
-    Viewer.exec();
+void MainWindow::on_bmovie9_clicked(){
+    QFile file( "file.txt" );
+    if ( file.open(QIODevice::ReadWrite) )
+    {
+       QString m1 = file.readAll().mid(24,26).left(2);
+        qDebug() << m1;
+    }
 }

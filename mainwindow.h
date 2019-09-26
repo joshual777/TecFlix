@@ -5,7 +5,7 @@
 #include <list.h>
 #include <page.h>
 #include <node.h>
-
+#include <QPushButton>
 #include <QString>
 #include <QNetworkAccessManager>
 #include <QFile>
@@ -27,6 +27,16 @@ public:
 
 void setName(const QString &name);
 
+public:
+    QPushButton *bmovie1;
+    QPushButton *bmovie2;
+    QPushButton *bmovie3;
+    QPushButton *bmovie4;
+    QPushButton *bmovie5;
+    QPushButton *bmovie6;
+    QPushButton *bmovie7;
+    QPushButton *bmovie9;
+    QPushButton *bmovie8;
 
 private slots:
 
@@ -48,22 +58,16 @@ private slots:
     //void managerFinished(QNetworkReply *reply);
 
     void on_bmovie1_clicked();
-
     void on_bmovie2_clicked();
-
     void on_bmovie3_clicked();
-
     void on_bmovie4_clicked();
-
     void on_bmovie5_clicked();
-
     void on_bmovie6_clicked();
-
     void on_bmovie7_clicked();
-
     void on_bmovie8_clicked();
-
     void on_bmovie9_clicked();
+
+
 
 private:
     Ui::MainWindow *ui;

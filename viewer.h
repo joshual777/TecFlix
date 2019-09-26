@@ -15,6 +15,10 @@ public:
     explicit Viewer(QWidget *parent = nullptr );
     ~Viewer();
 
+public slots:
+    //void onNewTextEntered(const QString &text);
+
+
 private:
     Ui::Viewer *ui;
 };

@@ -20,8 +20,6 @@ Viewer::Viewer( QWidget *parent) :
     ui->lactor1->setVisible(false);
     ui->lactor2->setVisible(false);
     ui->lactor3->setVisible(false);
-
-
 }
 
 Viewer::~Viewer()
