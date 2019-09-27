@@ -55,6 +55,7 @@ private slots:
     void on_btnfile_clicked();
     //void readyRead();
     void Displaying(int getpage);
+    void ShowInfo(int id);
     //void managerFinished(QNetworkReply *reply);
 
     void on_bmovie1_clicked();
@@ -66,8 +67,8 @@ private slots:
     void on_bmovie7_clicked();
     void on_bmovie8_clicked();
     void on_bmovie9_clicked();
-
-
+    void on_btnback_clicked();
+    void on_btnback_2_clicked();
 
 private:
     Ui::MainWindow *ui;

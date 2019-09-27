@@ -13,6 +13,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
+#include <QDesktopServices>
 
 #include "list.h"
 
@@ -21,6 +22,8 @@
 
 #include <label.h>
 #include <viewer.h>
+
+#include <ctime>
 
 MainWindow::MainWindow(QWidget *parent) :
 
@@ -67,11 +70,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lgenere->setVisible(false);
     ui->lduration->setVisible(false);
     ui->lyear->setVisible(false);
+    ui->llanguage->setVisible(false);
     ui->lcontent->setVisible(false);
     ui->ldirectorname->setVisible(false);
     ui->lactor1->setVisible(false);
     ui->lactor2->setVisible(false);
     ui->lactor3->setVisible(false);
+    ui->btnback_2->setVisible(false);
+    ui->ldirector_2->setVisible(false);
+
+
 
     //Managers in order to take the url image from the html give by the link in the csv and display the image on each label
 
@@ -322,6 +330,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::Displaying(int getpage){
 
+
+    clock_t begin = clock();
+
     QString reciever;  //This pointer is assign in order to receive teh data from the csv
 
     List <QString> images;
@@ -367,6 +378,7 @@ void MainWindow::Displaying(int getpage){
         elementp = GetPage(ui->lineselect->text(),past);
         previous_page.add_end(elementp);
         qDebug() << previous_page.getbyposicion(index);
+
 
         //Storing the current page
         elementc = GetPage(ui->lineselect->text(),slicer);
@@ -440,22 +452,32 @@ void MainWindow::Displaying(int getpage){
 //    qDebug() << current;
 //    qDebug() << nextt;
 //    qDebug() << "first";
+
+    clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC; // Print time
+    qDebug() << "EXECUTION TIME";
+    qDebug() << elapsed_secs;
 }
 
 //Method to give the first page, with the 9 posters on it
 void MainWindow::on_btn1_clicked(){
 
+    clock_t begin = clock();
     //Catch the number from the button to give the page
     QString thispage = ui->btn1->text();
     int sendpage = thispage.toInt();  //Convertion from QString to int
     Displaying(sendpage);  //The page will send to the Displaying method
+
+    clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC; // Print time
+    qDebug() << "EXECUTION TIME";
+    qDebug() << elapsed_secs;
 }
 
 
 //Method to give the second page, with the 9 posters on it
 void MainWindow::on_btn2_clicked(){
-    qDebug() << ui->bmovie1->width();
-    qDebug() << ui->bmovie1->height();
+
     //Catch the number from the button to give the page
     QString thispage = ui->btn2->text();
     int sendpage = thispage.toInt();  //Convertion from QString to int
@@ -632,15 +654,88 @@ void MainWindow::on_btnfile_clicked(){
     ui->btnselect->setVisible(true);
 }
 
+void MainWindow::ShowInfo(int id){
+
+     clock_t begin = clock();
+
+
+    //Elements visible
+    ui->lback->setVisible(true);
+    ui->btnback->setVisible(true);
+    ui->lmoviedisplay->setVisible(true);
+    ui->lmovieinfo->setVisible(true);
+    ui->btnback_2->setVisible(true);
+    ui->ldirector_2->setVisible(true);
+
+    //Movie name
+    ui->ltitle->setText(Info(ui->lineselect->text(), id, 1));
+    ui->ltitle->setVisible(true);
+    ui->lmoviedisplay->setText(Info(ui->lineselect->text(), id, 1));
+
+    //Director name
+    ui->ldirector->setVisible(true);
+    ui->ldirectorname->setText(Info(ui->lineselect->text(), id, 2));
+    ui->ldirectorname->setVisible(true);
+
+    //Year
+    ui->lyear->setText(Info(ui->lineselect->text(), id, 3));
+    ui->lyear->setVisible(true);
+
+    //Duration
+    ui->lduration->setText(Info(ui->lineselect->text(), id, 4));
+    ui->lduration->setVisible(true);
+
+    //Genere
+    ui->lgenere->setText(Info(ui->lineselect->text(), id, 5));
+    ui->lgenere->setVisible(true);
+
+    //Content
+    ui->lcontent->setText(Info(ui->lineselect->text(), id, 6));
+    ui->lcontent->setVisible(true);
+
+    //Country
+    ui->lcountry->setText(Info(ui->lineselect->text(), id, 7));
+    ui->lcountry->setVisible(true);
+
+    //Language
+    ui->llanguage->setText(Info(ui->lineselect->text(), id, 8));
+    ui->llanguage->setVisible(true);
+
+
+    //Stars name
+    ui->lstars->setVisible(true);
+
+    //Actor_1
+    ui->lactor1->setText(Info(ui->lineselect->text(), id, 9));
+    ui->lactor1->setVisible(true);
+
+    //Actor_2
+    ui->lactor2->setText(Info(ui->lineselect->text(), id, 10));
+    ui->lactor2->setVisible(true);
+
+    //Actor_3
+    ui->lactor3->setText(Info(ui->lineselect->text(), id, 11));
+    ui->lactor3->setVisible(true);
+
+    //Movie Url
+    ui->ldirector_2->setVisible(true);
+    ui->ldirector_2->setText(Info(ui->lineselect->text(), id, 0));
+
+    clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC; // Print time
+    qDebug() << "EXECUTION TIME";
+    qDebug() << elapsed_secs;
+}
+
 
 void MainWindow::on_bmovie1_clicked(){
 
     QFile file( "file.txt" );
     if ( file.open(QIODevice::ReadWrite) )
     {
+        ui->bmovie1->setVisible(true);
         QString m1 = file.readAll().mid(0,2);
-        qDebug() << m1;
-        //qDebug()<< m1.mid(0,2);
+        ShowInfo(m1.toInt());
     }
 }
 
@@ -649,7 +744,7 @@ void MainWindow::on_bmovie2_clicked(){
     if ( file.open(QIODevice::ReadWrite) )
     {
         QString m1 = file.readAll().mid(3,5).left(2);
-        qDebug() << m1;
+        ShowInfo(m1.toInt());
     }
 }
 
@@ -658,7 +753,7 @@ void MainWindow::on_bmovie3_clicked(){
     if ( file.open(QIODevice::ReadWrite) )
     {
         QString m1 = file.readAll().mid(6,8).left(2);
-        qDebug() << m1;
+        ShowInfo(m1.toInt());
     }
 }
 
@@ -667,7 +762,7 @@ void MainWindow::on_bmovie4_clicked(){
     if ( file.open(QIODevice::ReadWrite) )
     {
         QString m1 = file.readAll().mid(9,11).left(2);
-        qDebug() << m1;
+        ShowInfo(m1.toInt());
     }
 }
 
@@ -676,7 +771,7 @@ void MainWindow::on_bmovie5_clicked(){
     if ( file.open(QIODevice::ReadWrite) )
     {
         QString m1 = file.readAll().mid(12,14).left(2);
-        qDebug() << m1;
+        ShowInfo(m1.toInt());
     }
 }
 
@@ -685,7 +780,7 @@ void MainWindow::on_bmovie6_clicked(){
     if ( file.open(QIODevice::ReadWrite) )
     {
        QString m1 = file.readAll().mid(15,17).left(2);
-        qDebug() << m1;
+       ShowInfo(m1.toInt());
     }
 }
 
@@ -694,7 +789,7 @@ void MainWindow::on_bmovie7_clicked(){
     if ( file.open(QIODevice::ReadWrite) )
     {
         QString m1 = file.readAll().mid(18,20).left(2);
-        qDebug() << m1;
+        ShowInfo(m1.toInt());
     }
 }
 
@@ -703,7 +798,7 @@ void MainWindow::on_bmovie8_clicked(){
     if ( file.open(QIODevice::ReadWrite) )
     {
         QString m1 = file.readAll().mid(21,23).left(2);
-        qDebug() << m1;
+        ShowInfo(m1.toInt());
     }
 }
 
@@ -712,6 +807,35 @@ void MainWindow::on_bmovie9_clicked(){
     if ( file.open(QIODevice::ReadWrite) )
     {
        QString m1 = file.readAll().mid(24,26).left(2);
-        qDebug() << m1;
+       ShowInfo(m1.toInt());
     }
+}
+
+void MainWindow::on_btnback_clicked()
+{
+    ui->btnback->setVisible(false);
+    ui->lback->setVisible(false);
+    ui->lstars->setVisible(false);
+    ui->ltitle->setVisible(false);
+    ui->lmoviedisplay->setVisible(false);
+    ui->lmovieinfo->setVisible(false);
+    ui->ldirector->setVisible(false);
+    ui->lcountry->setVisible(false);
+    ui->lgenere->setVisible(false);
+    ui->lduration->setVisible(false);
+    ui->lyear->setVisible(false);
+    ui->llanguage->setVisible(false);
+    ui->lcontent->setVisible(false);
+    ui->ldirectorname->setVisible(false);
+    ui->lactor1->setVisible(false);
+    ui->lactor2->setVisible(false);
+    ui->lactor3->setVisible(false);
+    ui->btnback_2->setVisible(false);
+    ui->ldirector_2->setVisible(false);
+}
+
+void MainWindow::on_btnback_2_clicked()
+{
+    QString url = ui->ldirector_2->text();
+    QDesktopServices::openUrl(url);
 }
