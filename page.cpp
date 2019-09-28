@@ -109,7 +109,7 @@ QString Search(QString tosearch, int page){
          totalrows = wordList.length() /colums +1; //This variable gives the amount of rows in the csv
          amount = wordList.length(); //Variable who has the amount of the whole csv
 
-         //The array can  manage the whole csv in bigger cases will happen the same
+         //The list can  manage the whole csv in bigger cases will happen the same
          //but in order to work better it will be segment in fractions of 1200 movies to manage easily
          //file in eficienttly
 
@@ -296,12 +296,6 @@ QString Info(QString tosearch, int page, int id){
          case 11:{
              return line.getbyposicion(page*27-13);  //Returning the node with the link given in the csv as QString
          }
-
-
-
-
-
-
          }
      }
 }

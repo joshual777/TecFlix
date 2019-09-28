@@ -30,8 +30,7 @@ SOURCES += \
     customview.cpp \
     node.cpp \
     list.cpp \
-    page.cpp \
-    viewer.cpp
+    page.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,13 +38,14 @@ HEADERS += \
     node.h \
     list.h \
     page.h \
-    viewer.h
+    ../build-TecFlix-Desktop_Qt_5_11_2_GCC_64bit-Debug/customview.h
 
 FORMS += \
-        mainwindow.ui \
-    viewer.ui
+        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=
